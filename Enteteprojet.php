@@ -14,6 +14,7 @@
 
 	<header>
 		<h1 class="TitreSite">Site de E-Commerce</h1>
+		<h3 class="Soustitre">Site de reférence pour le E-shopping</h3>
 	</header>
 
 	<body>
@@ -23,10 +24,12 @@
 	<input type="text" name="passworduser" placeholder="Password">
 	<input type="submit" name="boutonlogin">
 	</form>
-	<!--<br/>
 	<br/>
+	<!--<br/>
 	Voila de quoi ecrire!!!<br/>
 	Pourquoi il n'y a aucune image en fond?<br/>
+	BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla<br/>
+	BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla
 	<br/>-->
 	<br/>
 	</body>

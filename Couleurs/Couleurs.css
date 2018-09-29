@@ -8,19 +8,29 @@
  font-size : xx-large;
  }
 
+ .Soustitre
+ {color : white;
+ text-align: center;
+ font-weight: normal;
+ text-decoration: none;
+ font-size: large;
+ font-style: italic; 
+ }
+
 header
 {background-color : black;
-height : 150px;
-width : 700px;
+height : 100px;
+width : 400px;
 margin : auto;
 }
 
 body
-{background-image: url("ecommerce/images/The_Archangel.jpg") ;
-background-attachement : fixed;
-color : rgb(185, 22, 22);
+{background-image: url("../images/The_Archangel.jpg") ;
+background-attachement : scroll;
+color : rgb(236, 50, 26);
 background-repeat : no-repeat;
 background-position: center;
+opacity: 1;
 }
 
 footer
