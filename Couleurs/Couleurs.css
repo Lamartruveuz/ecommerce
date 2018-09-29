@@ -15,6 +15,14 @@ width : 700px;
 margin : auto;
 }
 
+body
+{background-image: url("ecommerce/images/The_Archangel.jpg") ;
+background-attachement : fixed;
+color : rgb(185, 22, 22);
+background-repeat : no-repeat;
+background-position: center;
+}
+
 footer
 {background-color : black;
 color : white;

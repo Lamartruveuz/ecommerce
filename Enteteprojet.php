@@ -16,6 +16,20 @@
 		<h1 class="TitreSite">Site de E-Commerce</h1>
 	</header>
 
+	<body>
+	<br/>
+	<form action="" method="POST">
+	<input type="text" name="loginuser" placeholder="Login">
+	<input type="text" name="passworduser" placeholder="Password">
+	<input type="submit" name="boutonlogin">
+	</form>
+	<!--<br/>
+	<br/>
+	Voila de quoi ecrire!!!<br/>
+	Pourquoi il n'y a aucune image en fond?<br/>
+	<br/>-->
+	<br/>
+	</body>
 
 	<footer>
 		<p>
