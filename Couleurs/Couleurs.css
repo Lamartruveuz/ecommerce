@@ -17,11 +17,20 @@
  font-style: italic; 
  }
 
+.liensrecherches
+{
+text-align: justify;
+}
+
 header
 {background-color : black;
-height : 100px;
-width : 400px;
+height : 125px;
+width : 500px;
 margin : auto;
+border-style: double;
+border-color: white;
+border-top-left-radius: 15px;
+border-bottom-right-radius: 15px;
 }
 
 body

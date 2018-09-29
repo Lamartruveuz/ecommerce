@@ -25,6 +25,11 @@
 	<input type="submit" name="boutonlogin">
 	</form>
 	<br/>
+	<a href="" class="liensrecherches">Menu Articles</a>
+	<a href="" class="liensrecherches">Panier</a>
+	<a href="" class="liensrecherches">Recherche des Articles</a>
+	<a href="" class="liensrecherches">Créer un compte utilisateur</a>
+
 	<!--<br/>
 	Voila de quoi ecrire!!!<br/>
 	Pourquoi il n'y a aucune image en fond?<br/>
