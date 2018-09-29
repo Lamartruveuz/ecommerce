@@ -1,0 +1,23 @@
+
+/*Couleurs du titre et fond du header*/
+.TitreSite
+{color : #E31919;
+ text-align : center;
+ font-weight: bold;
+ text-decoration : underline;
+ font-size : xx-large;
+ }
+
+header
+{background-color : black;
+height : 150px;
+width : 700px;
+margin : auto;
+}
+
+footer
+{background-color : black;
+color : white;
+font-size : small;
+text-align : right;}
+
