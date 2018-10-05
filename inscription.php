@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Inscription</title>
+	<link rel="stylesheet"  href="css/main.css">
 </head>
 <?php include 'Enteteprojet.php'?>
 <body>

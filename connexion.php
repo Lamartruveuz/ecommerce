@@ -4,6 +4,7 @@
 		<title>
 			Connexion
 		</title>
+		<link rel="stylesheet"  href="css/main.css">
 	</head>
 	
 	<?php include 'Enteteprojet.php'?>
