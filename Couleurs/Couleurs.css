@@ -20,6 +20,7 @@
 .liensrecherches
 {
 text-align: justify;
+color : #10D0F7;
 }
 
 header
@@ -34,13 +35,30 @@ border-bottom-right-radius: 15px;
 }
 
 body
-{background-image: url("../images/The_Archangel.jpg") ;
-background-attachement : scroll;
-color : rgb(236, 50, 26);
-background-repeat : no-repeat;
+{
+background-image: url("../images/The_Archangel.jpg");
+background-attachment: fixed;
+background-repeat : repeat;
 background-position: center;
 opacity: 1;
 }
+
+main
+{
+background-color: rgba(255, 255, 255, 0.5);
+//-webkit-hyphens: auto;
+//-moz-hyphens: auto;
+//-ms-hyphens: auto;
+//-o-hyphens: auto;
+//hyphens : auto;
+overflow : hidden;
+text-overflow : ellipse;
+margin-left: 10%;
+margin-right: 10%; 
+color : black;
+opacity: 1;
+}
+
 
 footer
 {background-color : black;
