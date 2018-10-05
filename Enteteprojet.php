@@ -4,12 +4,6 @@
 	<head>
 		<title>Site_E-commerce.com</title>
 		<link rel="stylesheet" href="Couleurs/Couleurs.css"/>
-
-<!--<form action="SiteSuite.php" method="GET">
-<input type="text" placeholder="Recherches articles" name="Recherche"/>
-<input type="submit" name="Recheche"/>
-</form>-->
-
 	</head>
 
 	<header>
@@ -18,72 +12,57 @@
 	</header>
 
 	<body>
-	<br/>
-	<form action="" method="POST">
-	<input type="text" name="loginuser" placeholder="Login">
-	<input type="text" name="passworduser" placeholder="Password">
-	<input type="submit" name="boutonlogin">
-	</form>
-	<br/>
-	<a href="" class="liensrecherches">Menu Articles</a>
-	<a href="" class="liensrecherches">Panier</a>
-	<a href="" class="liensrecherches">Recherche des Articles</a>
-	<a href="" class="liensrecherches">Créer un compte utilisateur</a>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<main>
-	<p class="paragraphetexte">
-	<br/>
-	Voila de quoi ecrire!!!<br/>
-	Pourquoi il n'y a aucune image en fond?<br/>
-	BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla<br/>
-	BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla
-	<br/>
-	<br/>
-	</p>
-	</main>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<div>
+			<marquee class="bandef" direction ="left">
+				#Nightmare
+				<img class="imagebandef" src="../images/Freddy.jpg"/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Mask
+				<img class="imagebandef" src="../images/mask.jpg"/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#DF6
+				<img class="imagebandef" src="../images/Destination final 6.jpg"/>
+			</marquee>
+		</div>
+		<br/>
+		<div>
+			<ul class="menuderoulant">
+				<li><a href="">Compte</a>
+					<ul>
+						<li><a href="">Créer un compte</a></li>
+						<li><a href="">Mon compte</a></li>
+					</ul>
+				</li>
+				<li><a href="">Articles</a>
+					<ul>
+						<li><a href="">Nouveautés</a></li>
+						<li><a href="">Panier</a></li>
+						<li><a href="">Favoris</a></li>
+					</ul>
+				</li>
+				<li><a href="">Recheche</a>
+				</li>
+			</ul>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<main>
+			<p class="paragraphetexte">
+				<br/>
+				<blockquote>
+				</blockquote>
+				<br/>
+				<br/>
+			</p>
+		</main>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 	</body>
 
 	<footer>

@@ -1,5 +1,5 @@
 
-/*Couleurs du titre et fond du header*/
+/*Couleurs du titre, sous-titre et fond du header*/
 .TitreSite
 {color : #E31919;
  text-align : center;
@@ -17,12 +17,6 @@
  font-style: italic; 
  }
 
-.liensrecherches
-{
-text-align: justify;
-color : #10D0F7;
-}
-
 header
 {background-color : black;
 height : 125px;
@@ -34,6 +28,22 @@ border-top-left-radius: 15px;
 border-bottom-right-radius: 15px;
 }
 
+
+
+
+
+/*Qualificatifs des différents liens de pages*/
+.liensrecherches
+{
+text-align: justify;
+color : #10D0F7;
+}
+
+
+
+
+
+/*Organisation du corps de page*/
 body
 {
 background-image: url("../images/The_Archangel.jpg");
@@ -53,13 +63,95 @@ background-color: rgba(255, 255, 255, 0.5);
 //hyphens : auto;
 overflow : hidden;
 text-overflow : ellipse;
-margin-left: 10%;
-margin-right: 10%; 
+margin-left: 15%;
+margin-right: 15%; 
 color : black;
 opacity: 1;
 }
 
 
+
+
+
+/*Defilement des photos et des textes*/
+.bandef
+{
+direction: left;
+scrollamount : 20;
+onmouseover:  ;
+onmouseout:  ;
+color: white;
+}
+
+.imagebandef
+{
+height: 100px;
+width: 400px;   
+}
+
+
+
+
+
+/*Gestion des menus déroulants*/
+.menuderoulant, .menuderoulant ul 
+{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+.menuderoulant 
+{
+/* on centre le menu dans la page */
+    text-align: left;
+    margin-left: 2%;
+}
+.menuderoulant li 
+{
+/* on place les liens du menu horizontalement */ 
+width: 150px;
+text-align: center;
+background-color:rgba(187, 4, 4, 0.6);
+display: inline-block;
+font-family: Impact, fantasy;
+color: rgb(255, 255, 255);
+}
+
+.menuderoulant ul li 
+{
+/* on enlève ce comportement pour les liens du sous menu */
+display: inherit;
+display:block;
+}
+
+.menuderoulant a 
+{
+    text-decoration: none;
+    display: block;
+	color: rgb(255, 255, 255);
+}
+
+.menuderoulant ul 
+{
+    position: absolute;
+/* on cache les sous menus complètement sur la gauche */
+    left: -999em;
+    text-align: left;
+    z-index: 1000;
+}
+.menuderoulant li:hover ul 
+{
+/* Au survol des li du menu on replace les sous menus */
+    left: auto;
+}
+
+
+
+
+
+
+/*Gestion des pieds de pages*/
 footer
 {background-color : black;
 color : white;
