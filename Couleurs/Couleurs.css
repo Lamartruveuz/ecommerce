@@ -1,21 +1,22 @@
 
 /*Couleurs du titre, sous-titre et fond du header*/
 .TitreSite
-{color : #E31919;
- text-align : center;
- font-weight: bold;
- text-decoration : underline;
- font-size : xx-large;
- }
+{
+color : #E31919;
+text-align : center;
+font-weight: bold;
+text-decoration : underline;
+font-size : xx-large;
+}
 
- .Soustitre
- {color : white;
- text-align: center;
- font-weight: normal;
- text-decoration: none;
- font-size: large;
- font-style: italic; 
- }
+.Soustitre
+{color : white;
+text-align: center;
+font-weight: normal;
+text-decoration: none;
+font-size: large;
+font-style: italic; 
+}
 
 header
 {background-color : black;
@@ -96,17 +97,19 @@ width: 400px;
 /*Gestion des menus déroulants*/
 .menuderoulant, .menuderoulant ul 
 {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    text-align: center;
+padding: 0;
+margin: 0;
+list-style: none;
+text-align: center;
 }
+
 .menuderoulant 
 {
 /* on centre le menu dans la page */
-    text-align: left;
-    margin-left: 2%;
+text-align: left;
+margin-left: 2%;
 }
+
 .menuderoulant li 
 {
 /* on place les liens du menu horizontalement */ 
@@ -127,23 +130,24 @@ display:block;
 
 .menuderoulant a 
 {
-    text-decoration: none;
-    display: block;
-	color: rgb(255, 255, 255);
+text-decoration: none;
+display: block;
+color: rgb(255, 255, 255);
 }
 
 .menuderoulant ul 
 {
-    position: absolute;
+position: absolute;
 /* on cache les sous menus complètement sur la gauche */
-    left: -999em;
-    text-align: left;
-    z-index: 1000;
+left: -999em;
+text-align: left;
+z-index: 1000;
 }
+
 .menuderoulant li:hover ul 
 {
 /* Au survol des li du menu on replace les sous menus */
-    left: auto;
+left: auto;
 }
 
 
@@ -153,8 +157,10 @@ display:block;
 
 /*Gestion des pieds de pages*/
 footer
-{background-color : black;
+{
+background-color : black;
 color : white;
 font-size : small;
-text-align : right;}
+text-align : right;
+}
 
