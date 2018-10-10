@@ -9,8 +9,9 @@ text-decoration : underline;
 font-size : xx-large;
 }
 
-.Soustitre
-{color : white;
+ .Soustitre
+{
+color : white;
 text-align: center;
 font-weight: normal;
 text-decoration: none;
@@ -19,7 +20,8 @@ font-style: italic;
 }
 
 header
-{background-color : black;
+{
+background-color : black;
 height : 125px;
 width : 500px;
 margin : auto;
