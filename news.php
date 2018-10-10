@@ -1,26 +1,21 @@
+
 <html>
 <head>
-    <title>ecommerce</title>
-
-    <link rel="stylesheet" href="Couleurs/Couleurs.css" />
-	<?php include 'Enteteprojet.php' ?>
+<link rel="stylesheet" href="css/main.css" />
 </head>
-
+<?php include 'Enteteprojet.php'?>
 <body>
 <?php
 	$bdd = new
 	PDO('mysql:host=localhost;dbname=e-commerce', 'root', '') ;
 
-	$research = $bdd->query("select * from product where short_title like '%".$_GET['search']."%'");
- ?>
-	<main> <?php
-	if ($research->rowCount() === 0) { 
-    
-	echo "No result found." ?>
+	$response = $bdd->query("select * from product order by id desc limit 3");
+	//$results = $response->fetch() ;
+
 	
-<?php
-} 
-	foreach($research as $row){
+
+
+	foreach($response as $row){
 		?>
 		<section class='sectionresults'>
 		<aside class='asideresults'>	
@@ -55,9 +50,8 @@
 		</section>
 	<?php
 	}
-	
 	?>
-	</main>
+
     
 	</body>
 	<?php include 'footer.php' ?>
