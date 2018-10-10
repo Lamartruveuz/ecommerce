@@ -19,11 +19,11 @@
 		<div>
 			<marquee class="bandef" direction ="left">
 				#Nightmare
-				<img class="imagebandef" src="../images/Freddy.jpg"/>
+				<img class="imagebandef" src="./images/Freddy.jpg"/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Mask
-				<img class="imagebandef" src="../images/mask.jpg"/>
+				<img class="imagebandef" src="./images/mask.jpg"/>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#DF6
-				<img class="imagebandef" src="../images/Destination final 6.jpg"/>
+				<img class="imagebandef" src="./images/Destination final 6.jpg"/>
 			</marquee>
 		</div>
 		<br/>
@@ -31,18 +31,18 @@
 			<ul class="menuderoulant">
 				<li><a href="">Compte</a>
 					<ul>
-						<li><a href="">Créer un compte</a></li>
-						<li><a href="">Mon compte</a></li>
+						<li><a href="./inscription.php">Créer un compte</a></li>
+						<li><a href="./connexion.php">Mon compte</a></li>
 					</ul>
 				</li>
 				<li><a href="">Articles</a>
 					<ul>
-						<li><a href="">Nouveautés</a></li>
-						<li><a href="">Panier</a></li>
+						<li><a href="./news.php">Nouveautés</a></li>
+						<li><a href="./cart.php">Panier</a></li>
 						<li><a href="">Favoris</a></li>
 					</ul>
 				</li>
-				<li><a href="">Recheche</a>
+				<li><a href="./search.php">Recheche</a>
 				</li>
 			</ul>
 		</div>
