@@ -4,7 +4,6 @@
 		<title>
 			Connexion
 		</title>
-		<link rel="stylesheet"  href="css/main.css">
 	</head>
 	
 	<?php include 'Enteteprojet.php'?>
@@ -23,11 +22,11 @@
 			<div>
 				<label>Entrez votre adresse email :</label>
 			</div>
-				<input  type="text" placeholder="jean.dupond@gmail"/>
+				<input  type="text" name="mail"/>
 			<div>
 				<label>Entrez votre mot de passe :</label>
 			</div>
-				<input type="password" placeholder="mot de passe"/>
+				<input type="password" name="mdp"/>
 			<div>
 				<input type="button" value="Connexion"/>
 			</div>
