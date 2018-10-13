@@ -1,0 +1,285 @@
+
+/*Couleurs du titre, sous-titre et fond du header*/
+.TitreSite
+{
+color : #E31919;
+text-align : center;
+font-weight: bold;
+text-decoration : underline;
+font-size : xx-large;
+}
+
+ .Soustitre
+{
+color : white;
+text-align: center;
+font-weight: normal;
+text-decoration: none;
+font-size: large;
+font-style: italic; 
+}
+
+header
+{
+background-color : black;
+height : 125px;
+width : 500px;
+margin : auto;
+border-style: double;
+border-color: white;
+border-top-left-radius: 15px;
+border-bottom-right-radius: 15px;
+}
+
+
+
+
+
+/*Qualificatifs des différents liens de pages*/
+.liensrecherches
+{
+text-align: justify;
+color : #10D0F7;
+}
+
+
+
+
+
+/*Organisation du corps de page*/
+body
+{
+background-image: url("../images/The_Archangel.jpg");
+background-attachment: fixed;
+background-repeat : repeat;
+background-position: center;
+opacity: 1;
+}
+
+main
+{
+background-color: rgba(255, 255, 255, 0.5);
+//-webkit-hyphens: auto;
+//-moz-hyphens: auto;
+//-ms-hyphens: auto;
+//-o-hyphens: auto;
+//hyphens : auto;
+overflow : hidden;
+text-overflow : ellipse;
+margin-left: 15%;
+margin-right: 15%; 
+color : black;
+opacity: 1;
+}
+
+.asideresults 
+{
+width: 110px;
+height:110px;
+padding: var(--horizontal-margin);
+text-align: center;
+box-sizing:border-box;
+background-color: dimgray;
+top: 150px;
+float: right;
+right: 0px;
+}
+
+/*-- aside*/
+
+.asideproduct 
+{
+width: 300px;
+height:300px;
+padding: var(--horizontal-margin);
+text-align: center;
+box-sizing:border-box;
+background-color: dimgray;
+top: 150px;
+float: right;
+right: 0px;
+}
+
+.sectionresults 
+{ 
+margin:30px var(--horizontal-margin);
+background-color: CornFlowerBlue;
+margin-left: 15%;
+margin-right: 15%;  
+height: 110px;
+} 
+
+/*-- section*/
+
+.sectioncart 
+{ 
+margin:30px var(--horizontal-margin);
+background-color: CornFlowerBlue;
+margin-left: 26%;
+margin-right: 26%;
+height: 110px;
+}
+
+.sectionproduct 
+{ 
+margin:30px var(--horizontal-margin);
+background-color: CornFlowerBlue;
+margin-left: 15%;
+margin-right: 15%;
+height: 300px;
+}
+
+#productImageresult 
+{
+max-height: 100px;
+float:left;
+margin-right: 10px;
+margin-left: 10px;
+margin-top:4px;
+}
+
+#productImage 
+{
+max-height: 200px;
+float:left;
+margin-right: 10px;
+margin-left: 10px;
+margin-top:4px;
+}
+
+#OrderImage 
+{
+max-height: 50px;
+}
+	
+.titre_court 
+{
+font-size: 30px;
+}
+
+.titre_long 
+{
+color: #ADB2B5;
+font-size: 15px;
+display: block;
+}
+
+.description 
+{
+background-color:white;    
+margin-left:150px;
+margin-right: 70px;
+}
+
+.divorder
+{
+background-color:white;    
+text-align: center;
+margin-left:40%;
+margin-right: 40%;
+}
+
+input[type=number]
+{
+width: 50px;
+}
+
+.Inscri_Connex 
+{
+font-size: 17px;   
+text-align: center;
+}
+
+
+
+
+/*Defilement des photos et des textes*/
+.bandef
+{
+direction: left;
+scrollamount : 20;
+onmouseover:  ;
+onmouseout:  ;
+color: white;
+}
+
+.imagebandef
+{
+height: 100px;
+width: 400px;   
+}
+
+
+
+
+
+/*Gestion des menus déroulants*/
+.menuderoulant, .menuderoulant ul 
+{
+padding: 0;
+margin: 0;
+list-style: none;
+text-align: center;
+}
+
+.menuderoulant 
+{
+/* on centre le menu dans la page */
+text-align: left;
+margin-left: 2%;
+}
+
+.menuderoulant li 
+{
+/* on place les liens du menu horizontalement */ 
+width: 150px;
+text-align: center;
+background-color:rgba(187, 4, 4, 0.6);
+display: inline-block;
+font-family: Impact, fantasy;
+color: rgb(255, 255, 255);
+}
+
+.menuderoulant ul li 
+{
+/* on enlève ce comportement pour les liens du sous menu */
+display: inherit;
+display:block;
+}
+
+.menuderoulant a 
+{
+text-decoration: none;
+display: block;
+color: rgb(255, 255, 255);
+}
+
+.menuderoulant ul 
+{
+position: absolute;
+/* on cache les sous menus complètement sur la gauche */
+left: -999em;
+text-align: left;
+z-index: 1000;
+}
+
+.menuderoulant li:hover ul 
+{
+/* Au survol des li du menu on replace les sous menus */
+left: auto;
+}
+
+
+
+
+
+
+/*Gestion des pieds de pages*/
+footer
+{
+background-color : black;
+color : white;
+font-size : small;
+text-align : right;
+}
+
