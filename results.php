@@ -3,7 +3,7 @@
     <title>ecommerce</title>
 
     <link rel="stylesheet" href="Couleurs/Couleurs.css" />
-	<?php include 'database.php' ?>
+	<?php include 'database_projet.php' ?>
 	<?php include 'Enteteprojet.php' ?>
 </head>
 

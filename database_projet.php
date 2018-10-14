@@ -1,9 +1,7 @@
 
 
 <html>
-	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=projetecommerce','root','');
-	?>
+	
 	
 	
 <!--REQUETES COMMANDES DATABASE-->
@@ -24,7 +22,7 @@
 		$amount='0';
 		
 		//SQL requests for needed values through all the targetted tables 
-		$product_info=$bdd->query('SELECT op.quantity, op.unit_price, op.product_id, p.name, o.amount
+		$product_info=$bdd->query('SELECT op.quantity, op.unit_price, op.product_id, p.name_short,p.name_long, o.amount
 								FROM order_products op 
 								INNER JOIN orders o ON o.id=op.order_id
 								INNER JOIN products p ON p.id=op.product_id
@@ -33,24 +31,25 @@
 		//Curse of all lines that fit the conditions and display in form
 		foreach($product_info as $row) 
 		{
-						?>
-				<section class='sectioncart'>
-					<aside class='asideresults'>	
-						<div>
-							<br>Prix: <br> <?php echo $row["unit_price"]?>€
-						</div>
-					</aside>
-					<img id="productImageresult" src="images/<?php echo $row["id"]?>.jpg" border="1"/>
-					<div>	
-						<h1>
-							<span class="fn titre_court"><?php echo $row["name"]?></span>
-							<br/>
-							<p class="titrelong">
-								<span class="titre_long"><?php echo $row["name"]?></span>
-							</p>
-						</h1>
-					</div>
-				</section>
+			?>
+			<aside class='asideresults'>	
+				<div>
+					<br> <?php echo $row["unit_price"]?>€
+				</div>
+			</aside>
+			<section class='sectioncart'>
+				
+				<img id="productImageresult" src="images/<?php echo $row["product_id"]?>.jpg" border="1"/>
+				<div>	
+					<h1>
+						<span class="fn titre_court"><?php echo $row["name_short"]?></span>
+						<br/>
+						<p class="titrelong">
+							<span class="titre_long"><?php echo $row["name_long"]?></span>
+						</p>
+					</h1>
+				</div>
+			</section>
 						
 			<?php 
 			//Take back amount value
@@ -66,10 +65,10 @@
 
 
 
-</html>
+
 
   
-<?php
+
 
 function connexion($mail,$mdp){
 	if (empty($mail) | empty($mdp)) 
@@ -78,7 +77,7 @@ function connexion($mail,$mdp){
 	}
 	else {
 	        //connexion avec la base de données
-	    $pdo = new PDO("mysql:host=localhost;dbname=projet", "root", "");
+	    $pdo = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
 	    $connexion =  $pdo->prepare('SELECT COUNT(*) as nb FROM user WHERE mail = ? and password = ?');
 	    $connexion->execute(array($mail, $mdp));
 	    $row = $stmt -> fetch();
@@ -98,7 +97,7 @@ function inscription($mail,$conf_mail,$mdp,$conf_mdp,$villeL,$paysL,$code_postal
 	    echo 'mauvaise saisie de la connexion';
 	}
 	else{
-		$pdo = new PDO("mysql:host=localhost;dbname=projet", "root", "");
+		$pdo = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
 		//verif si adresse est bien un mail
 		if (filter_var($mail, FILTER_VALIDATE_EMAIL)){
 			//verif si les adresses mails sont bien les même
@@ -145,7 +144,7 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 
 	
 	$bdd = new
-	PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+	PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 	$product_id=1;
 	$quantity=2; 
 	$user_id=1; //Known variables when user click "add to cart"
@@ -178,7 +177,7 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 	*/	
 	function research($search,$range) {
 		$bdd = new
-			PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 		if($range!=null) {
 			$research =$bdd->query("select * from products where name_short like '%".$search."%' AND range_id=".$range);
 		}
@@ -188,21 +187,21 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 	
 	function product_from_id($id) {
 		$bdd = new
-			PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 		$product =$bdd->query('select * from products where id='.$id)->fetch();
 		return $product;
 	}
 	
 	function all_ranges() {
 		$bdd = new
-			PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 		$product =$bdd->query('select id, name from ranges');
 		return $product;
 	}
 		
 	function add_to_cart($product_id,$quantity,$user_id) {		
 		$bdd = new
-			PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 		$get_price=$bdd->query('select unit_price from products where id='.$product_id)->fetch(); //get price of the product
 		$price=$get_price["unit_price"];
 		
@@ -249,3 +248,4 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 	
 ?>
 
+</html>

@@ -4,19 +4,14 @@
 
     <link rel="stylesheet" href="Couleurs/Couleurs.css" />
 	<?php include 'Enteteprojet.php' ?>
-	<?php include 'database.php' ?>
+	<?php include 'database_projet.php' ?>
 </head>
 
 <body>
 <main>
 	<?php
-	$bdd = new
-	PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
-
-	$cart = $bdd->query("select * from products");
-	$total=0;
 	
-	display_cart();
+	display_cart(1);
 	?>
 	
 	</main>

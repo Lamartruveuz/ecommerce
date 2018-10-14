@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php include("Enteteprojet.php"); ?>
-	<?php include 'database.php' ?>
+	<?php include 'database_projet.php' ?>
 	<title></title>
 </head>
 <body>
