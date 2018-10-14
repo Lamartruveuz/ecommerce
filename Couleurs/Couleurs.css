@@ -1,4 +1,4 @@
-
+/*TITRES du SITE*/
 /*Couleurs du titre, sous-titre et fond du header*/
 .TitreSite
 {
@@ -45,7 +45,7 @@ color : #10D0F7;
 
 
 
-
+/*CORPS de PAGE*/
 /*Organisation du corps de page*/
 body
 {
@@ -59,130 +59,266 @@ opacity: 1;
 main
 {
 background-color: rgba(255, 255, 255, 0.5);
-//-webkit-hyphens: auto;
-//-moz-hyphens: auto;
-//-ms-hyphens: auto;
-//-o-hyphens: auto;
-//hyphens : auto;
+/*-webkit-hyphens: auto;
+-moz-hyphens: auto;
+-ms-hyphens: auto;
+-o-hyphens: auto;
+hyphens : auto;*/
 overflow : hidden;
 text-overflow : ellipse;
 margin-left: 15%;
 margin-right: 15%; 
 color : black;
 opacity: 1;
+border-radius: 10px;
 }
 
-.asideresults 
-{
-width: 110px;
-height:110px;
-padding: var(--horizontal-margin);
-text-align: center;
-box-sizing:border-box;
-background-color: dimgray;
-top: 150px;
-float: right;
-right: 0px;
-}
-
-/*-- aside*/
-
-.asideproduct 
-{
-width: 300px;
-height:300px;
-padding: var(--horizontal-margin);
-text-align: center;
-box-sizing:border-box;
-background-color: dimgray;
-top: 150px;
-float: right;
-right: 0px;
-}
-
+/*AFFICHAGE des PRODUIT résultats de la RECHERCHE*/
+/*Box produit sans survol de souris*/
 .sectionresults 
 { 
+/*réglages texte*/
+padding: 0;
+text-indent: 2em;
+color: white;
+font-size: 12px;
+text-overflow: ellipsis;
+/*réglages box*/
 margin:30px var(--horizontal-margin);
-background-color: CornFlowerBlue;
+border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;
+background-image: linear-gradient(to top, rgba(150,18,18,1), rgba(218,99,99,1), rgba(150,18,18,1));
+margin-top: 30px;
 margin-left: 15%;
-margin-right: 15%;  
+margin-right: 30%;
+margin-bottom: 30px;
 height: 110px;
-} 
+}
+/*Box produit avec survol de la souris*/
+.sectionresults:hover
+{
+	background-image: linear-gradient(to top, rgba(150,68,68,1), rgba(218,149,149,1), rgba(150,68,68,1));
+}
 
+/*Box du prix sortie de la recherche*/
+.asideresults 
+{
+/*réglages texte*/
+color: white;
+font-family: Impact,fantasy;
+font-size: 24px;
+font-weight: bold;
+text-overflow: ellipsis;
+/*réglages box*/
+width: 140px;
+height:110px;
+line-height: 50px;
+border-top-right-radius: 8px;
+border-bottom-right-radius: 8px;
+padding: var(--horizontal-margin);
+box-sizing:border-box;
+background-image: linear-gradient(to top, rgba(31,31,31,1), rgba(93,93,93,1), rgba(31,31,31,1));
+text-align: center;
+/*réglages position*/
+margin-top: 30px;
+margin-right: 15%;
+margin-bottom: 30px;
+float: right;
+}
+
+/*bouton pour ajouter au panier dans les resultats de recherche*/
+/*bouton libre*/
+.boutonpanierrecherche
+{
+	/*réglages texte*/
+	font-size: 15px;
+	color: white;
+	font-family: Impact,fantasy;
+	font-weight: normal;
+	/*réglages bouton*/
+	margin: auto;
+	display: block;
+	width: 130px;
+	height: 30px;
+	line-height:30px;
+	text-align: center;
+	border-radius: 15px;
+	background-image: linear-gradient(to top, rgba(15,170,60,1), rgba(1,230,50,1),rgba(15,170,60,1));
+}
+/*bouton survolé par la souris*/
+.boutonpanierrecherche:hover
+{
+	background-image: linear-gradient(to top, rgba(85,200,130,50), rgba(50,255,120,1),rgba(85,200,130,1));
+}
+
+
+
+/*-- aside*/
+/*AFFICHAGE de la DESCRIPTION PRODUIT apres la selection*/
+.sectionproduct 
+{
+/*reglages texte*/
+padding: 0;
+text-indent: 2em;
+text-overflow: ellipsis;
+color: white;
+font-size: 12px;
+/*réglages box*/
+margin: 30px var(--horizontal-margin);
+background-image: linear-gradient(to top, rgba(150,18,18,1), rgba(218,99,99,1), rgba(150,18,18,1));
+margin-left: 5%;
+margin-right: 28%;
+margin-top: 30px;
+margin-bottom: 30px;
+height: 300px;
+border-bottom-left-radius: 10px;
+border-top-left-radius: 10px;
+}
+
+/*Affichage du prix après sélection du produit pour observer*/
+.asideproduct 
+{
+/*réglage texte*/
+color: white;
+font-family: Impact,fantasy;
+font-size: 45px;
+font-weight: bold;
+text-overflow: ellipsis;
+/*réglages box*/
+width: 200px;
+height:300px;
+line-height: 170px;
+padding: var(--horizontal-margin);
+text-align: center;
+box-sizing:border-box;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+background-image: linear-gradient(to top, rgba(31,31,31,1), rgba(93,93,93,1), rgba(31,31,31,1));
+float: right;
+margin-right: 5%;
+margin-top: 30px;
+margin-bottom: 30px;
+}
+
+/*bouton panier après sélection du produit*/
+.boutonpanierproduit
+{
+	/*réglages texte*/
+	font-size: 25px;
+	color: white;
+	font-family: Impact,fantasy;
+	font-weight: normal;
+	/*réglages bouton*/
+	margin: auto;
+	display: block;
+	width: 150px;
+	height: 70px;
+	line-height:70px;
+	text-align: center;
+	border-radius: 15px;
+	background-image: linear-gradient(to top, rgba(15,170,60,1), rgba(1,230,50,1),rgba(15,170,60,1));
+}
+/*bouton survolé par la souris*/
+.boutonpanierproduit:hover
+{
+	background-image: linear-gradient(to top, rgba(85,200,130,50), rgba(50,255,120,1),rgba(85,200,130,1));
+}
+
+
+
+/*AFFICHAGE du PANIER*/
 /*-- section*/
 
 .sectioncart 
 { 
+/*réglages texte*/
+padding: 0;
+color: white;
+font-size: 12px;
+text-indent: 2em;
+text-overflow: ellipsis;
+/*réglages box*/
 margin:30px var(--horizontal-margin);
-background-color: CornFlowerBlue;
-margin-left: 26%;
-margin-right: 26%;
+border-radius: 10px;
+background-image: linear-gradient(to top, rgba(150,18,18,1), rgba(218,99,99,1), rgba(150,18,18,1));
+margin-top: 30px;
+margin-bottom: 30px;
+margin-left: 15%;
+margin-right: 15%;
 height: 110px;
 }
 
-.sectionproduct 
-{ 
-margin:30px var(--horizontal-margin);
-background-color: CornFlowerBlue;
-margin-left: 15%;
-margin-right: 15%;
-height: 300px;
+/*PRESENTATION du PRODUIT*/
+/*TITRE de PRESENTATION*/	
+.titre_court 
+{
+font-size: 30px;
+font-family: Impact,fantasy;
+color: white;
+font-weight: bold;
+}
+/*TITRE de DESCRIPTION*/
+.titre_long 
+{
+color: #C6B7E7;
+font-family: Impact,fantasy;
+font-size: 15px;
 }
 
+/*IMAGE du produit après la RECHERCHE*/
 #productImageresult 
 {
 max-height: 100px;
 float:left;
-margin-right: 10px;
 margin-left: 10px;
-margin-top:4px;
+margin-top:5px;
+margin-bottom: 5px;
 }
 
+/*IMAGE du produit lors de la DESCRIPTION*/
 #productImage 
 {
 max-height: 200px;
 float:left;
 margin-right: 10px;
 margin-left: 10px;
-margin-top:4px;
+margin-top:10px;
 }
 
+/*IMAGE du produit dans le PANIER*/
 #OrderImage 
 {
-max-height: 50px;
-}
-	
-.titre_court 
-{
-font-size: 30px;
-}
-
-.titre_long 
-{
-color: #ADB2B5;
-font-size: 15px;
-display: block;
+float:left;
+max-height: 100px;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: 10px;
 }
 
-.description 
+/*Pour moi (Max) ces classes ne servent à rien on peut les dégager*/
+/*.description 
 {
 background-color:white;    
 margin-left:150px;
 margin-right: 70px;
-}
+}*/
 
-.divorder
+/*.divorder
 {
 background-color:white;    
 text-align: center;
 margin-left:40%;
 margin-right: 40%;
-}
+}*/
 
 input[type=number]
 {
 width: 50px;
 }
+
+
+
+
 
 .Inscri_Connex 
 {
