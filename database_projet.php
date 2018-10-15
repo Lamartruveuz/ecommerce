@@ -42,7 +42,7 @@
 				<img id="productImageresult" src="images/<?php echo $row["product_id"]?>.jpg" border="1"/>
 				<div>	
 					<h1>
-						<span class="fn titre_court"><?php echo $row["name_short"]?></span>
+						<span class="fn titre_court"><a href="product.php?id=<?php echo $row["product_id"]?>" style="text-decoration: none; color: #FFFFFF"><?php echo $row["name_short"]?> </a></span>
 						<br/>
 						<p class="titrelong">
 							<span class="titre_long"><?php echo $row["name_long"]?></span>

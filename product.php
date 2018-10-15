@@ -36,7 +36,7 @@
 		<section class="asideproduct">
 			<?php echo $product["unit_price"]?>€
 			<form method='post' id='order'>
-				<input value="1" type="number" form="order" min="1" max="100" name="quantity" form='order'>	
+				Quantité:<br><input value="1" type="number" form="order" min="1" max="100" name="quantity" form='order'>	
 				<input class="boutonpanierproduit" type='submit' value='Add to cart' />
 			</form>
 		

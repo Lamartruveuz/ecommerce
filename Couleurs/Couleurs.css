@@ -112,7 +112,7 @@ text-overflow: ellipsis;
 /*réglages box*/
 width: 140px;
 height:110px;
-line-height: 50px;
+line-height: 30px;
 border-top-right-radius: 8px;
 border-bottom-right-radius: 8px;
 padding: var(--horizontal-margin);
@@ -187,8 +187,8 @@ text-overflow: ellipsis;
 /*réglages box*/
 width: 200px;
 height:300px;
-line-height: 170px;
-padding: var(--horizontal-margin);
+line-height: 50px;
+padding: 30px;
 text-align: center;
 box-sizing:border-box;
 border-top-right-radius: 10px;
