@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 	<head>
 		<title>
@@ -7,13 +8,21 @@
 	</head>
 	
 	<?php include 'Enteteprojet.php'?>
+	<?php include 'database_projet.php'?>
 	<body>
+	<?php
+	if(isset($_POST['username'],$_POST['password'])){
+		
+	connexion($_POST['username'],$_POST['password']);} 
+	?>
+	
 		<br>
 		<br>
 		<br>
 		<main>
 		<br>
 		<div class="Inscri_Connex">
+		<form id="connex" method="post" />
 			<div>
 				<label>IDENTIFICATION :</label>
 			</div>
@@ -22,13 +31,13 @@
 			<div>
 				<label>Entrez votre adresse email :</label>
 			</div>
-				<input  type="text" name="mail"/>
+				<input  name="username" type="text" name="mail" id="connex"/>
 			<div>
 				<label>Entrez votre mot de passe :</label>
 			</div>
-				<input type="password" name="mdp"/>
+				<input name="password" type="password" name="mdp" id="connex"/>
 			<div>
-				<input type="button" value="Connexion"/>
+				<input type="submit" value="Connexion" id="connex"/>
 			</div>
 			<br>
 			<div>
