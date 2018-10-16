@@ -2,14 +2,15 @@
 <html>
 <head>
 	<?php include("Enteteprojet.php"); ?>
-	<?php include 'database.php' ?>
+	<?php include 'database_projet.php' ?>
 	<title></title>
 </head>
 <body>
 <br><br>
 	<main>
+	<center>
 		<form action="results.php" method="GET">
-		Research: <input type="text" name="search" />
+		<br>Research: <input type="text" name="search" />
 		<select name='category'>
 		<option disabled selected>Category</option>
 		<?php 
@@ -18,8 +19,10 @@
 			echo("<option value='".$range["id"]."'>".$range["name"]."</option>");
 		} ?>
 		</select>
-		<input type="submit" />
+		<input type="submit" />		
 		</form>
+		<br>
+		</center>
 	</main>
 </body>
 </html>

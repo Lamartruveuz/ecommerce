@@ -1,4 +1,4 @@
-
+<?php session_start();?>
 <html>
 <head>
 <link rel="stylesheet" href="css/main.css" />
@@ -7,7 +7,7 @@
 <body>
 <?php
 	$bdd = new
-	PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+	PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 
 	$response = $bdd->query("select * from products order by id desc limit 5");
 	//$results = $response->fetch() ;

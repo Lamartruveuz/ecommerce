@@ -1,0 +1,421 @@
+/*TITRES du SITE*/
+/*Couleurs du titre, sous-titre et fond du header*/
+.TitreSite
+{
+color : #E31919;
+text-align : center;
+font-weight: bold;
+text-decoration : underline;
+font-size : xx-large;
+}
+
+ .Soustitre
+{
+color : white;
+text-align: center;
+font-weight: normal;
+text-decoration: none;
+font-size: large;
+font-style: italic; 
+}
+
+header
+{
+background-color : black;
+height : 125px;
+width : 500px;
+margin : auto;
+border-style: double;
+border-color: white;
+border-top-left-radius: 15px;
+border-bottom-right-radius: 15px;
+}
+
+
+
+
+
+/*Qualificatifs des différents liens de pages*/
+.liensrecherches
+{
+text-align: justify;
+color : #10D0F7;
+}
+
+
+
+
+/*CORPS de PAGE*/
+/*Organisation du corps de page*/
+body
+{
+background-image: url("../images/The_Archangel.jpg");
+background-attachment: fixed;
+background-repeat : repeat;
+background-position: center;
+opacity: 1;
+}
+
+main
+{
+background-color: rgba(255, 255, 255, 0.5);
+/*-webkit-hyphens: auto;
+-moz-hyphens: auto;
+-ms-hyphens: auto;
+-o-hyphens: auto;
+hyphens : auto;*/
+overflow : hidden;
+text-overflow : ellipse;
+margin-left: 15%;
+margin-right: 15%; 
+color : black;
+opacity: 1;
+border-radius: 10px;
+}
+
+/*AFFICHAGE des PRODUIT résultats de la RECHERCHE*/
+/*Box produit sans survol de souris*/
+.sectionresults 
+{ 
+/*réglages texte*/
+padding: 0;
+text-indent: 2em;
+color: white;
+font-size: 12px;
+text-overflow: ellipsis;
+/*réglages box*/
+margin:30px var(--horizontal-margin);
+border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;
+background-image: linear-gradient(to top, rgba(150,18,18,1), rgba(218,99,99,1), rgba(150,18,18,1));
+margin-top: 30px;
+margin-left: 15%;
+margin-right: 30%;
+margin-bottom: 30px;
+height: 110px;
+}
+/*Box produit avec survol de la souris*/
+.sectionresults:hover
+{
+	background-image: linear-gradient(to top, rgba(150,68,68,1), rgba(218,149,149,1), rgba(150,68,68,1));
+}
+
+/*Box du prix sortie de la recherche*/
+.asideresults 
+{
+/*réglages texte*/
+color: white;
+font-family: Impact,fantasy;
+font-size: 24px;
+font-weight: bold;
+text-overflow: ellipsis;
+/*réglages box*/
+width: 140px;
+height:110px;
+line-height: 30px;
+border-top-right-radius: 8px;
+border-bottom-right-radius: 8px;
+padding: var(--horizontal-margin);
+box-sizing:border-box;
+background-image: linear-gradient(to top, rgba(31,31,31,1), rgba(93,93,93,1), rgba(31,31,31,1));
+text-align: center;
+/*réglages position*/
+margin-top: 30px;
+margin-right: 15%;
+margin-bottom: 30px;
+float: right;
+}
+
+/*bouton pour ajouter au panier dans les resultats de recherche*/
+/*bouton libre*/
+.boutonpanierrecherche
+{
+	/*réglages texte*/
+	font-size: 15px;
+	color: white;
+	font-family: Impact,fantasy;
+	font-weight: normal;
+	/*réglages bouton*/
+	margin: auto;
+	display: block;
+	width: 130px;
+	height: 30px;
+	line-height:30px;
+	text-align: center;
+	border-radius: 15px;
+	background-image: linear-gradient(to top, rgba(15,170,60,1), rgba(1,230,50,1),rgba(15,170,60,1));
+}
+/*bouton survolé par la souris*/
+.boutonpanierrecherche:hover
+{
+	background-image: linear-gradient(to top, rgba(85,200,130,50), rgba(50,255,120,1),rgba(85,200,130,1));
+}
+
+
+
+/*-- aside*/
+/*AFFICHAGE de la DESCRIPTION PRODUIT apres la selection*/
+.sectionproduct 
+{
+/*reglages texte*/
+padding: 0;
+text-indent: 2em;
+text-overflow: ellipsis;
+color: white;
+font-size: 12px;
+/*réglages box*/
+margin: 30px var(--horizontal-margin);
+background-image: linear-gradient(to top, rgba(150,18,18,1), rgba(218,99,99,1), rgba(150,18,18,1));
+margin-left: 5%;
+margin-right: 28%;
+margin-top: 30px;
+margin-bottom: 30px;
+height: 300px;
+border-bottom-left-radius: 10px;
+border-top-left-radius: 10px;
+}
+
+/*Affichage du prix après sélection du produit pour observer*/
+.asideproduct 
+{
+/*réglage texte*/
+color: white;
+font-family: Impact,fantasy;
+font-size: 45px;
+font-weight: bold;
+text-overflow: ellipsis;
+/*réglages box*/
+width: 200px;
+height:300px;
+line-height: 50px;
+padding: 30px;
+text-align: center;
+box-sizing:border-box;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+background-image: linear-gradient(to top, rgba(31,31,31,1), rgba(93,93,93,1), rgba(31,31,31,1));
+float: right;
+margin-right: 5%;
+margin-top: 30px;
+margin-bottom: 30px;
+}
+
+/*bouton panier après sélection du produit*/
+.boutonpanierproduit
+{
+	/*réglages texte*/
+	font-size: 25px;
+	color: white;
+	font-family: Impact,fantasy;
+	font-weight: normal;
+	/*réglages bouton*/
+	margin: auto;
+	display: block;
+	width: 150px;
+	height: 70px;
+	line-height:70px;
+	text-align: center;
+	border-radius: 15px;
+	background-image: linear-gradient(to top, rgba(15,170,60,1), rgba(1,230,50,1),rgba(15,170,60,1));
+}
+/*bouton survolé par la souris*/
+.boutonpanierproduit:hover
+{
+	background-image: linear-gradient(to top, rgba(85,200,130,50), rgba(50,255,120,1),rgba(85,200,130,1));
+}
+
+
+
+/*AFFICHAGE du PANIER*/
+/*-- section*/
+
+.sectioncart 
+{ 
+/*réglages texte*/
+padding: 0;
+color: white;
+font-size: 12px;
+text-indent: 2em;
+text-overflow: ellipsis;
+/*réglages box*/
+margin:30px var(--horizontal-margin);
+border-radius: 10px;
+background-image: linear-gradient(to top, rgba(150,18,18,1), rgba(218,99,99,1), rgba(150,18,18,1));
+margin-top: 30px;
+margin-bottom: 30px;
+margin-left: 15%;
+margin-right: 15%;
+height: 110px;
+}
+
+/*PRESENTATION du PRODUIT*/
+/*TITRE de PRESENTATION*/	
+.titre_court 
+{
+font-size: 30px;
+font-family: Impact,fantasy;
+color: white;
+font-weight: bold;
+}
+/*TITRE de DESCRIPTION*/
+.titre_long 
+{
+color: #C6B7E7;
+font-family: Impact,fantasy;
+font-size: 15px;
+}
+
+/*IMAGE du produit après la RECHERCHE*/
+#productImageresult 
+{
+max-height: 100px;
+float:left;
+margin-left: 10px;
+margin-top:5px;
+margin-bottom: 5px;
+}
+
+/*IMAGE du produit lors de la DESCRIPTION*/
+#productImage 
+{
+max-height: 200px;
+float:left;
+margin-right: 10px;
+margin-left: 10px;
+margin-top:10px;
+}
+
+/*IMAGE du produit dans le PANIER*/
+#OrderImage 
+{
+float:left;
+max-height: 100px;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: 10px;
+}
+
+/*Pour moi (Max) ces classes ne servent à rien on peut les dégager*/
+/*.description 
+{
+background-color:white;    
+margin-left:150px;
+margin-right: 70px;
+}*/
+
+/*.divorder
+{
+background-color:white;    
+text-align: center;
+margin-left:40%;
+margin-right: 40%;
+}*/
+
+input[type=number]
+{
+width: 50px;
+}
+
+
+
+
+
+.Inscri_Connex 
+{
+font-size: 17px;   
+text-align: center;
+}
+
+
+
+
+/*Defilement des photos et des textes*/
+.bandef
+{
+direction: left;
+scrollamount : 20;
+onmouseover:  ;
+onmouseout:  ;
+color: white;
+}
+
+.imagebandef
+{
+height: 100px;
+width: 400px;   
+}
+
+
+
+
+
+/*Gestion des menus déroulants*/
+.menuderoulant, .menuderoulant ul 
+{
+padding: 0;
+margin: 0;
+list-style: none;
+text-align: center;
+}
+
+.menuderoulant 
+{
+/* on centre le menu dans la page */
+text-align: left;
+margin-left: 2%;
+}
+
+.menuderoulant li 
+{
+/* on place les liens du menu horizontalement */ 
+width: 150px;
+text-align: center;
+background-color:rgba(187, 4, 4, 0.6);
+display: inline-block;
+font-family: Impact, fantasy;
+color: rgb(255, 255, 255);
+}
+
+.menuderoulant ul li 
+{
+/* on enlève ce comportement pour les liens du sous menu */
+display: inherit;
+display:block;
+}
+
+.menuderoulant a 
+{
+text-decoration: none;
+display: block;
+color: rgb(255, 255, 255);
+}
+
+.menuderoulant ul 
+{
+position: absolute;
+/* on cache les sous menus complètement sur la gauche */
+left: -999em;
+text-align: left;
+z-index: 1000;
+}
+
+.menuderoulant li:hover ul 
+{
+/* Au survol des li du menu on replace les sous menus */
+left: auto;
+}
+
+
+
+
+
+
+/*Gestion des pieds de pages*/
+footer
+{
+background-color : black;
+color : white;
+font-size : small;
+text-align : right;
+}
+
