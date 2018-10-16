@@ -78,16 +78,21 @@ function connexion($mail,$mdp){
 	else {
 	        //connexion avec la base de données
 	    $pdo = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
-	    $connexion =  $pdo->prepare('SELECT COUNT(*) as nb FROM user WHERE mail = ? and password = ?');
-	    $connexion->execute(array($mail, $mdp));
-	    $row = $stmt -> fetch();
+	    $users=$pdo->query("SELECT * FROM users WHERE email='".$mail."' AND password=".$mdp);
 
-	    if ($row['nb'] == 0) 
+	    if (!$users) 
 	    {
-	    	echo 'erreur identifiant et ou mot de passe incorect';
+			echo "Identifiant ou mot de passe incorrect";
+			
 	    }
 	    else {
+			$user=$users->fetch();
+			$_SESSION["id"]=$user["id"];
+			$_SESSION["username"]=$user["username"];
+			header('Location: news.php');
 	    	//lance la fonction sseion qui permettra d'avoir un session utilisateur ouverte
+			
+			
 	    } 
 	}
 }

@@ -31,15 +31,21 @@
 			<ul class="menuderoulant">
 				<li><a href="">Compte</a>
 					<ul>
+						<?php if(!isset($_SESSION["id"])) {?>
 						<li><a href="./inscription.php">Créer un compte</a></li>
-						<li><a href="./connexion.php">Mon compte</a></li>
+						<li><a href="./connexion.php">Connexion</a></li>
+						<?php } 
+						else{?>
+						<li><a href="">Mon compte</a></li> <?php }?>
 					</ul>
 				</li>
 				<li><a href="">Articles</a>
 					<ul>
 						<li><a href="./news.php">Nouveautés</a></li>
+						<?php if(isset($_SESSION["id"])) {?>
 						<li><a href="./cart.php">Panier</a></li>
 						<li><a href="">Favoris</a></li>
+						<?php } ?>
 					</ul>
 				</li>
 				<li><a href="./search.php">Recheche</a>

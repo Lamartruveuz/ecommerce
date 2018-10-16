@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 <head>
     <title>ecommerce</title>
@@ -22,25 +23,29 @@
 	
 	?>
 	<main>
-		<!--<div class="asideresults">
-			193.50€
-			<div class="boutonpanierrecherche">
-				Add to cart
-			</div>
-		</div>
-		<section class="sectionresults">
-			<img src="../images/1.jpg" id="productImageresult"/>
-			<p class="titre_court">Ordinateur</p>
-			<p class="titre_long">Pintium 345</p>
-		</section>-->
-		<section class="asideproduct">
-			<?php echo $product["unit_price"]?>€
-			<form method='post' id='order'>
-				Quantité:<br><input value="1" type="number" form="order" min="1" max="100" name="quantity" form='order'>	
-				<input class="boutonpanierproduit" type='submit' value='Add to cart' />
-			</form>
 		
-		</section>
+		<?php if(isset($_SESSION["id"])) {?>
+			<section class="asideproduct">
+				<?php echo $product["unit_price"]?>€
+				<form method='post' id='order'>
+					Quantité:<br><input value="1" type="number" form="order" min="1" max="100" name="quantity" form='order'>	
+					<input class="boutonpanierproduit" type='submit' value='Add to cart' />
+				</form>
+			
+			</section>
+		<?php }
+		else {?>
+			<section class="asideproduct">
+				<?php echo $product["unit_price"]?>€
+				
+				Quantité:<br><input value="1" type="number" min="1" max="100">	
+				<a class="boutonpanierproduit" href="connexion.php">
+				Add to cart
+				</a>
+				
+			
+			</section>
+		<?php } ?>
 		<section class="sectionproduct">
 			<img src="images/<?php echo $product["id"]?>.jpg" id="productImage"/>
 			<p class="titre_court"><?php echo $product["name_short"] ?></p>
@@ -49,12 +54,8 @@
 			<p>BLEH BLEH BLEH</p>
 			
 		</section>
-		<!--<section class="sectioncart">
-			<img src="../images/1.jpg" id="OrderImage"/>
-			<div class="titre_court">Ordi</div>
-			<div class="titre_long">Pintium 345</div>
-			<p>HOPLA!</p>-->
-		</section>
+		
+		
 	</main>
     
 </body>
