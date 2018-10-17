@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 
 	<head>
@@ -36,7 +37,7 @@
 						<li><a href="./connexion.php">Connexion</a></li>
 						<?php } 
 						else{?>
-						<li><a href="">Mon compte</a></li> <?php }?>
+						<li><a href="account.php">Mon compte</a></li> <?php }?>
 					</ul>
 				</li>
 				<li><a href="">Articles</a>

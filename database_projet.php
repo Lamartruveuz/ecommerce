@@ -78,8 +78,7 @@ function connexion($mail,$mdp){
 	else {
 	        //connexion avec la base de données
 	    $pdo = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
-	    $users=$pdo->query("SELECT * FROM users WHERE email='".$mail."' AND password=".$mdp);
-
+	    $users=$pdo->query("SELECT * FROM users WHERE email='$mail' AND password='$mdp'");
 	    if (!$users) 
 	    {
 			echo "Identifiant ou mot de passe incorrect";
@@ -89,7 +88,7 @@ function connexion($mail,$mdp){
 			$user=$users->fetch();
 			$_SESSION["id"]=$user["id"];
 			$_SESSION["username"]=$user["username"];
-			header('Location: news.php');
+			header('Location: account.php');
 	    	//lance la fonction sseion qui permettra d'avoir un session utilisateur ouverte
 			
 			
@@ -104,13 +103,13 @@ function inscription($mail,$conf_mail,$mdp,$conf_mdp,$villeL,$paysL,$code_postal
 	else{
 		$pdo = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
 		$pdo->exec("INSERT INTO ranges (name) VALUES ('bleu')"); 
-		echo "2";
+
 		//verif si adresse est bien un mail
 		if (filter_var($mail, FILTER_VALIDATE_EMAIL)){
-			echo "3";
+
 			//verif si les adresses mails sont bien les même
 			if ($mail === $conf_mail){
-				$verif =  $pdo->exec('SELECT * FROM user WHERE mail ='.$mail);
+				$verif =  $pdo->query("SELECT * FROM users WHERE email ='$mail'")->fetch();
 				//verif si l'adresse mail n'existe pas déja dans la base de donnée
 	    		if (!$verif){
 	    			//verif si le mot de passe est bien saisi 2 fois à l'identique
@@ -118,20 +117,24 @@ function inscription($mail,$conf_mail,$mdp,$conf_mdp,$villeL,$paysL,$code_postal
 	    				echo "1";
 	    				//faire la requete sql qui remplie la base de donnée
 	    				enregistrement_order_adresse($villeL,$paysL,$code_postalL,$adresseL,$adresseL_special,$nom,$pdo);
-	    				/*enregistrement_user_adresse($villeF,$paysF,$code_postalF,$adresseF,$adresseF_special,$nom,$pdo);
-	    				enregistrment_user($nom,$mail,$mdp,$pdo);*/
+	    				enregistrement_user_adresse($villeF,$paysF,$code_postalF,$adresseF,$adresseF_special,$nom,$pdo);
+	    				enregistrment_user($nom,$mail,$mdp,$pdo);
 	    			}
-	    			else
+	    			else{
 	    				echo "mot de passe différent";
+	    			}
 	    		}
-	    		else
+	    		else{
 	    			echo "utilisateur déjà existant";
+	    		}
 			}
-			else
+			else{
 				echo "adresse mail différent";
+			}
 		}
-		else
+		else{
 			echo "l'adresse mail n'est pas valide";
+		}
 	}
 }
 
@@ -141,13 +144,16 @@ function enregistrement_order_adresse($ville,$pays,$code_postal,$adresse,$adress
 }
 
 function enregistrement_user_adresse($ville,$pays,$code_postal,$adresse,$adresse_special,$nom,$pdo){
-	$pdo->exec("INSERT INTO user_addresses (human_name,address_one,address_two,postal_code,city,country) VALUES ('$nom','$adresse','$adresse_special','$code_postal','$ville','$pays')");
+	$pdo->exec("INSERT INTO `user_addresses` (human_name,address_one,address_two,postal_code,city,country) VALUES ('$nom','$adresse','$adresse_special','$code_postal','$ville','$pays')");
 }
 
 function enregistrment_user($nom,$mail,$mdp,$pdo){
-	$id_order=$pdo->exec("SELECT max(id) FROM order_addresses");
-	$id_user=$pdo->exec("SELECT max(id) FROM user_addresses");
-	$pdo->exec("INSERT INTO user (username,email,password,billing_adress_id,delivery_adresss_id) VALUES ('$nom','$mail','$mdp','$id_order','$id_user')");
+	$id_order=$pdo->query("SELECT max(id) as max FROM order_addresses")->fetch();
+	$id_user=$pdo->query("SELECT max(id) as max FROM user_addresses")->fetch();
+	$id_user_adress=$id_user["max"];
+	$id_order_adress=$id_order["max"];
+
+	$pdo->exec("INSERT INTO `users` (username,email,password,billing_adress_id,delivery_adress_id) VALUES ('$nom','$mail','$mdp','$id_order_adress','$id_user_adress')");
 }
 
 	
