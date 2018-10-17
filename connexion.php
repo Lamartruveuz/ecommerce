@@ -22,7 +22,7 @@
 		<main>
 		<br>
 		<div class="Inscri_Connex">
-		<form id="connex" method="post" />
+		<form id="connex" method="post" ></form>
 			<div>
 				<label>IDENTIFICATION :</label>
 			</div>
@@ -44,7 +44,9 @@
 				<strong>Vous n'êtes pas encore clients?</strong>
 			</div>
 			<div>
-				<input type="button" value="Inscription">
+				<form action='inscription.php'>
+					<input value="Inscription" type="submit">
+				</form>
 			</div>
 			<br>
 		</div>
