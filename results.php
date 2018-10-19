@@ -1,8 +1,10 @@
+<!--Page corrigée : OK-->
+<!DOCTYPE html>
 <html>
 <head>
     <title>ecommerce</title>
 
-    <link rel="stylesheet" href="Couleurs/Couleurs.css" />
+    <link rel="stylesheet" href="../Couleurs/Couleurs.css" />
 	<?php include 'database_projet.php' ?>
 	<?php include 'Enteteprojet.php' ?>
 </head>
@@ -22,40 +24,24 @@
 	
 <?php
 } 	
-	foreach($research as $row){
+	foreach($research as $row)
+	{
 		?>
-		<aside class='asideresults'>	
-			<div>
-    		<br>Prix: <br> <?php echo $row["unit_price"]?>€
-    	    	
-
-			</div>
-
-		</aside>
+		<section class='asideresults'>	
+    		Prix: <br> <?php echo $row["unit_price"]?>€
+		</section>
 		<section class='sectionresults'>
-		
-		
-		
-    	
-			<img id="productImageresult" src="images/<?php echo $row["id"]?>.jpg" border="1"/>
-			<div>
-    		
-				<h1>
-			<span class="fn titre_court">			
-				<a href="product.php?id=<?php echo $row["id"]?>" style="text-decoration: none; color: #FFFFFF"><?php echo $row["name_short"]?> </a>			
-			</span>
-
-			<span class="titre_long"><?php echo $row["name_long"]?></span>
-			
-		</h1>
-				
-    		
+			<img id="productImageresult" src="../images/<?php echo $row["id"]?>.jpg"/>
+			<div>			
+				<a href="product.php?id=<?php echo $row["id"]?>" class="titre_court"><?php echo $row["name_short"]?> 
+				</a>			
+				<p class="titre_long">
+					<?php echo $row["name_long"]?>
+				</p>
 			</div>
-
 		</section>
 	<?php
 	}
-	
 	?>
 	<br>
 	</main>

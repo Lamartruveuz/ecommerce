@@ -78,20 +78,20 @@ border-radius: 10px;
 .sectionresults 
 { 
 /*réglages texte*/
-padding: 0;
+/*padding: 0;*/
 text-indent: 2em;
 color: white;
 font-size: 12px;
 text-overflow: ellipsis;
 /*réglages box*/
-margin:30px var(--horizontal-margin);
+/*margin:30px var(--horizontal-margin);*/
 border-top-left-radius: 10px;
 border-bottom-left-radius: 10px;
 background-image: linear-gradient(to top, rgba(150,18,18,1), rgba(218,99,99,1), rgba(150,18,18,1));
 margin-top: 30px;
 margin-left: 15%;
 margin-right: 30%;
-margin-bottom: 30px;
+margin-bottom: 0px; /*Attention cette valeur produit des décalages sur les blocs de prix, ne la changez pas*/
 height: 110px;
 }
 /*Box produit avec survol de la souris*/
@@ -115,15 +115,16 @@ height:110px;
 line-height: 30px;
 border-top-right-radius: 8px;
 border-bottom-right-radius: 8px;
-padding: var(--horizontal-margin);
-box-sizing:border-box;
+/*padding: var(--horizontal-margin);*/
+/*box-sizing:border-box;*/
 background-image: linear-gradient(to top, rgba(31,31,31,1), rgba(93,93,93,1), rgba(31,31,31,1));
 text-align: center;
 /*réglages position*/
 margin-top: 30px;
 margin-right: 15%;
-margin-bottom: 30px;
 float: right;
+clear: right; /*Combiné au float left, clear permet d'aligner les box de prix à droite en vertical*/
+/*ATTENTION : ne rajoutez pas de "margin-bottom" au risque de tout décaler*/
 }
 
 /*bouton pour ajouter au panier dans les resultats de recherche*/
@@ -167,7 +168,7 @@ font-size: 12px;
 margin: 30px var(--horizontal-margin);
 background-image: linear-gradient(to top, rgba(150,18,18,1), rgba(218,99,99,1), rgba(150,18,18,1));
 margin-left: 5%;
-margin-right: 28%;
+margin-right: 245px; /*valeur remplaçable par 28%, à voir en fonction de l'affichage sur différents ordis*/
 margin-top: 30px;
 margin-bottom: 30px;
 height: 300px;
@@ -181,14 +182,14 @@ border-top-left-radius: 10px;
 /*réglage texte*/
 color: white;
 font-family: Impact,fantasy;
-font-size: 45px;
+font-size: 40px;
 font-weight: bold;
 text-overflow: ellipsis;
 /*réglages box*/
 width: 200px;
 height:300px;
-line-height: 50px;
-padding: 30px;
+line-height: 75px;
+padding: var(--horizontal-margin);
 text-align: center;
 box-sizing:border-box;
 border-top-right-radius: 10px;
@@ -256,6 +257,7 @@ font-size: 30px;
 font-family: Impact,fantasy;
 color: white;
 font-weight: bold;
+text-decoration: none;
 }
 /*TITRE de DESCRIPTION*/
 .titre_long 

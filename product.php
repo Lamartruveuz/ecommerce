@@ -1,11 +1,12 @@
+<!--Page corrigée : OK-->
 <!DOCTYPE html>
 <?php session_start(); ?>
 <html>
 <head>
     <title>ecommerce</title>
 
-    <link rel="stylesheet" href="Couleurs/Couleurs.css" />
-	<?php include 'Enteteprojet.php' ?>
+    <link rel="stylesheet" href="../Couleurs/Couleurs.css" />
+	<?php include '../Max/Enteteprojet.php' ?>
 	<?php include 'database_projet.php' ?>
 </head>
 
@@ -22,13 +23,17 @@
 	$product = product_from_id($product_id);
 	
 	?>
+	<br/>
 	<main>
 		
-		<?php if(isset($_SESSION["id"])) {?>
+		<?php if(isset($_SESSION["id"])) 
+		{?>
 			<section class="asideproduct">
 				<?php echo $product["unit_price"]?>€
+
 				<form method='post' id='order'>
-					Quantité:<br><input value="1" type="number" form="order" min="1" max="100" name="quantity" form='order'>	
+					Quantité:
+					<input value="1" type="number" form="order" min="1" max="100" name="quantity" form='order'>	
 					<input class="boutonpanierproduit" type='submit' value='Add to cart' />
 				</form>
 			
@@ -47,11 +52,10 @@
 			</section>
 		<?php } ?>
 		<section class="sectionproduct">
-			<img src="images/<?php echo $product["id"]?>.jpg" id="productImage"/>
+			<img src="../images/<?php echo $product["id"]?>.jpg" id="productImage"/>
 			<p class="titre_court"><?php echo $product["name_short"] ?></p>
 			<p class="titre_long"><?php echo $product["name_long"] ?></p>
 			<p class="description"><?php echo $product["description"];?></p>
-			<p>BLEH BLEH BLEH</p>
 			
 		</section>
 		
