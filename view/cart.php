@@ -4,16 +4,13 @@
 
     <link rel="stylesheet" href="Couleurs/Couleurs.css" />
 	<?php include 'Enteteprojet.php' ?>
-	<?php include 'database_projet.php' ?>
 </head>
 
 <body>
 <main>
 	<?php
-	
-	display_cart(1);
+	display_cart($_SESSION["id"]);
 	?>
-	
 	</main>
 	</body>
 	

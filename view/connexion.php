@@ -8,7 +8,6 @@
 	</head>
 	
 	<?php include 'Enteteprojet.php'?>
-	<?php include 'database_projet.php'?>
 	<body>
 	
 	

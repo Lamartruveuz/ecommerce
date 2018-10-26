@@ -62,7 +62,6 @@
 	<head>
 		<link rel="stylesheet" href="Couleurs/Couleurs.css" />
 		<?php include 'Enteteprojet.php' ?>
-		<?php include 'database_projet.php' ?>
 	</head>
 	
 	<?php

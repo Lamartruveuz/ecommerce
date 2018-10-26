@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <?php session_start();?>
 <html>
-	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=projetecommerce','root','');
-	?>
 	<head>
+		<?php include 'database_projet.php'?>
 		<title>Site_E-commerce.com</title>
 		<link rel="stylesheet" href="Couleurs/Couleurs.css"/>
 		<?php if(isset($_SESSION["id"]))
 		{
-		?>
-		<?php $users = $bdd->query("SELECT * FROM users WHERE users.id=".$_SESSION["id"])->fetch()?>
+		 $users = SearchIdUser($_SESSION["id"])?>
 			<p class="connexionshown"><?php echo $users["email"]?>
 				<p class="connexionstate">Connected :</p>
 			</p>
@@ -44,18 +41,37 @@
 			<ul class="menuderoulant">
 				<li><a href="">Compte</a>
 					<ul>
-						<li><a href="inscription.php">Créer un compte</a></li>
-						<li><a href="connexion.php">Mon compte</a></li>
+						<?php 
+						if(!isset($_SESSION["id"]))
+						{
+						?>
+							<li><a href="index.php?page=inscription">Inscription</a></li>
+							<li><a href="index.php?page=connexion">Connexion</a></li>
+						<?php
+						}
+						else {
+							?>
+							<li><a href="index.php?page=account">Mon Compte</a></li>
+						<?php
+						}	
+						?>
 					</ul>
 				</li>
 				<li><a href="">Articles</a>
 					<ul>
-						<li><a href="news.php">Nouveautés</a></li>
-						<li><a href="cart.php">Panier</a></li>
+						<li><a href="index.php?page=news">Nouveautés</a></li>
+						<?php 
+						if(isset($_SESSION["id"]))
+						{
+						?>
+						<li><a href="index.php?page=cart">Panier</a></li>
 						<li><a href="">Favoris</a></li>
+						<?php 
+						} 
+						?>
 					</ul>
 				</li>
-				<li><a href="./search.php">Recheche</a>
+				<li><a href="index.php?page=search">Recheche</a>
 				</li>
 			</ul>
 		</div>

@@ -10,7 +10,7 @@
 	$bdd = new
 	PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 
-	$response = $bdd->query("select * from products order by id desc limit 5");
+	$response = $bdd->query("SELECT * from products order by id desc limit 5");
 	//$results = $response->fetch() ;?>
 
 	
@@ -22,9 +22,9 @@
 			Prix: <br> <?php echo $row["unit_price"]?>€
 		</section>
 		<section class='sectionresults'>
-			<img id="productImageresult" src="./images/<?php echo $row["id"]?>.jpg" border="1"/>
+			<img id="productImageresult" src="images/<?php echo $row["id"]?>.jpg" border="1"/>
 			<div>
-				<a href="product.php?id=<?php echo $row["id"]?>" class="fn titre_court"><?php echo $row["name_short"]?> 
+				<a href="index.php?page=product&id=<?php echo $row["id"]?>" class="fn titre_court"><?php echo $row["name_short"]?> 
 				</a>
 				<p class="titre_long"><?php echo $row["name_long"]?>
 				</p>    		
