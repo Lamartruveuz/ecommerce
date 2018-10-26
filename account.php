@@ -1,3 +1,62 @@
+<?php 
+	$bdd = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
+
+
+	function refresh_adresses() {
+		global $details;
+		global $bdd;
+		global $billing_adress;
+		global $delivery_adress;
+		
+		$delivery_adress =$bdd->query("select a.* from order_addresses a INNER JOIN users u 
+			ON a.id=u.billing_adress_id where u.id=".$_SESSION["id"])->fetch() ; 
+		$billing_adress =$bdd->query("select a.* from user_addresses a INNER JOIN users u 
+			ON a.id=u.delivery_adress_id where u.id=".$_SESSION["id"])->fetch() ;
+		$details =$bdd->query("SELECT * FROM users WHERE id=".$_SESSION["id"])->fetch() ;
+
+	}
+		
+	function modify_profile() {
+		global $bdd;
+		global $billing_adress;
+		global $delivery_adress;
+
+
+		if(isset($_POST["submit"])) {
+			if(empty($_POST["mail"]) |  empty($_POST["paysF"]) | empty($_POST["paysL"]) | empty($_POST["code_postalF"]) | empty($_POST["code_postalL"]) | empty($_POST["villeF"]) | empty($_POST["villeL"]) | empty($_POST["adresseF"]) |empty($_POST["adresseL"])) {
+			echo "Veuillez remplir tous les champs<br><br>";
+			}
+			else{
+				$update_billing_address=$bdd->query("UPDATE `user_addresses`
+					SET address_one='".$_POST["adresseF"]."', address_two='".$_POST['adresseF_special']."',postal_code='".$_POST['code_postalF']."',city='".$_POST['villeF']."',country='".$_POST['paysF']."' where id=".$billing_adress["id"]);
+				$update_delivery_address=$bdd->query("UPDATE `order_addresses`
+					SET address_one='".$_POST["adresseL"]."', address_two='".$_POST["adresseL_special"]."',postal_code='".$_POST["code_postalL"]."',city='".$_POST["villeL"]."',country='".$_POST["paysL"]."' where id=".$delivery_adress["id"]);
+				
+				
+			}
+			if(!empty($_POST["mdp"]) && !empty($_POST["conf_mdp"])) {
+				if($_POST["mdp"]==$_POST["conf_mdp"]) {
+					$update_password=$bdd->query("UPDATE users SET password='".$_POST["mdp"]."' where id=".$_SESSION["id"]);
+				}
+				else{
+					echo "Les mots de passe saisis sont différents<br><br>";
+				}
+			}	
+			if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) {				
+
+				$update_email=$bdd->query("UPDATE `users` SET email='".$_POST["mail"]."' where id=".$_SESSION['id']);
+				
+			}
+			else{
+					echo "Adresse mail invalide<br><br>";
+			}
+			refresh_adresses(); //Ne fonctionne pas, pas de refresh quand on submit
+			
+		}
+	}
+		
+		
+?>
 
 <html>
 	<head>
@@ -5,58 +64,22 @@
 		<?php include 'Enteteprojet.php' ?>
 		<?php include 'database_projet.php' ?>
 	</head>
+	
+	<?php
+	if(isset($_SESSION["id"])) 
+	{
+		refresh_adresses();
+	}
+	else{
+		header("Location: connexion.php");
+	}	
+		?>
 
-<?php 
-		
-		$bdd = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
-		
-		$delivery_adress =$bdd->query("select * from users u INNER JOIN order_addresses a 
-			ON a.id=u.delivery_adress_id where u.id=3")->fetch() ; //id à modifier
-		$delivery_id=$delivery_adress["id"];
-		$billing_adress =$bdd->query("select * from order_addresses a INNER JOIN users u 
-			ON a.id=u.billing_adress_id where u.id=3")->fetch() ;
-		$billing_id=$billing_adress["id"];
-		$details =$bdd->query("SELECT * FROM users WHERE id=3")->fetch() ;
-		
-		if(isset($_POST["submit"],$_POST["paysL"])) {
-			if(empty($_POST["mail"]) |  empty($_POST["paysF"]) | empty($_POST["paysL"]) | empty($_POST["code_postalF"]) | empty($_POST["code_postalL"]) | empty($_POST["villeF"]) | empty($_POST["villeL"]) | empty($_POST["adresseF"]) |empty($_POST["adresseL"])) {
-			echo "Veuillez remplir tous les champs";
-			}
-			else{
-				echo $billing_id;
-				$update_billing_address=$bdd->query("UPDATE order_addresses
-					SET address_one='".$_POST["adresseF"]."', address_two='".$_POST['adresseF_special']."',postal_code='".$_POST['code_postalF']."',city='".$_POST['villeF']."',country='".$_POST['paysF']."' where id=".$billing_id);
-				$update_delivery_address=$bdd->query("UPDATE order_addresses
-					SET address_one='".$_POST["adresseL"]."', address_two='".$_POST["adresseL_special"]."',postal_code='".$_POST["code_postalL"]."',city='".$_POST["villeL"]."',country='".$_POST["paysL"]."' where id=".$delivery_id);
-				
-				
-			}
-			if(!empty($_POST["mdp"]) && !empty($_POST["conf_mdp"])) {
-				if($_POST["mdp"]==$_POST["conf_mdp"]) {
-					$update_password=$bdd->query("UPDATE users SET password='".$_POST["mdp"]."' where id=3");
-				}
-			}	
-			if(!empty($_POST["mail"])) {
-				$update_email=$bdd->query("UPDATE users SET email='".$_POST["mail"]."' where id=3");
-				
-			}
-			
-			$delivery_adress =$bdd->query("select * from users u INNER JOIN order_addresses a 
-					ON a.id=u.delivery_adress_id where u.id=3")->fetch() ; //id à modifier
-				$delivery_id=$delivery_adress["id"];
-				$billing_adress =$bdd->query("select * from order_addresses a INNER JOIN users u 
-					ON a.id=u.billing_adress_id where u.id=3")->fetch() ;
-				$billing_id=$billing_adress["id"];
-				$details =$bdd->query("SELECT * FROM users WHERE id=3")->fetch() ;
-		}
-		
-		
-	?>
 	<body>
 
-		<main>
+		<main>		
 			<center>
-				<form method="post">
+				<form method="post">					
 					<div>
 						<br>
 						<label>  Nom Prenom:</label> <br>
@@ -97,8 +120,10 @@
 					</div>
 					<br>
 					<div>
-						
-							<input type="submit" value="Valider" name="submit">
+						<?php 
+						modify_profile(); 
+						?>
+						<input type="submit" value="Valider" name="submit">
 					</div>
 					<br>
 				</form>

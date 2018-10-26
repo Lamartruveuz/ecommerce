@@ -1,5 +1,3 @@
-
-
 <html>
 	
 	
@@ -57,7 +55,7 @@
 		}?>
 		<!--Display amount value-->
 		<aside class='asidecart'>
-			Montant total: <?php echo $amount?>€   <br><img id="OrderImage" src="commande.jpg" /><br><br>
+			Montant total: <?php echo $amount?>€   <br><img id="OrderImage" src="images/commande.jpg" /><br><br>
 		</aside>					
 		<?php	$product_info->closeCursor();
 	}
@@ -102,8 +100,6 @@ function inscription($mail,$conf_mail,$mdp,$conf_mdp,$villeL,$paysL,$code_postal
 	}
 	else{
 		$pdo = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
-		$pdo->exec("INSERT INTO ranges (name) VALUES ('bleu')"); 
-
 		//verif si adresse est bien un mail
 		if (filter_var($mail, FILTER_VALIDATE_EMAIL)){
 
@@ -114,11 +110,14 @@ function inscription($mail,$conf_mail,$mdp,$conf_mdp,$villeL,$paysL,$code_postal
 	    		if (!$verif){
 	    			//verif si le mot de passe est bien saisi 2 fois à l'identique
 	    			if ($mdp ===$conf_mdp){
-	    				echo "1";
 	    				//faire la requete sql qui remplie la base de donnée
+	    				$users1=$pdo->query("SELECT max(id) as max FROM users")->fetch();
 	    				enregistrement_order_adresse($villeL,$paysL,$code_postalL,$adresseL,$adresseL_special,$nom,$pdo);
 	    				enregistrement_user_adresse($villeF,$paysF,$code_postalF,$adresseF,$adresseF_special,$nom,$pdo);
 	    				enregistrment_user($nom,$mail,$mdp,$pdo);
+						$users2=$pdo->query("SELECT max(id) as max FROM users")->fetch();
+						if ($users2 > $users1)
+	    					echo "Vous êtes bien enregistré";
 	    			}
 	    			else{
 	    				echo "mot de passe différent";
@@ -140,7 +139,6 @@ function inscription($mail,$conf_mail,$mdp,$conf_mdp,$villeL,$paysL,$code_postal
 
 function enregistrement_order_adresse($ville,$pays,$code_postal,$adresse,$adresse_special,$nom,$pdo){
 	$enregistrement_order_adresse = $pdo->exec("INSERT INTO `order_addresses` (human_name,address_one,address_two,postal_code,city,country) VALUES ('$nom','$adresse','$adresse_special','$code_postal','$ville','$pays')");
-	echo "4";
 }
 
 function enregistrement_user_adresse($ville,$pays,$code_postal,$adresse,$adresse_special,$nom,$pdo){
