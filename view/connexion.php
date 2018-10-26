@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+
 <html>
 	<head>
 		<title>
@@ -7,22 +7,22 @@
 		</title>
 	</head>
 	
-	<?php include 'Enteteprojet.php'?>
-	<?php include 'database_projet.php'?>
 	<body>
-	<?php
-	if(isset($_POST['username'],$_POST['password'])){
-		
-	connexion($_POST['username'],$_POST['password']);} 
-	?>
+	
 	
 		<br>
 		<br>
 		<br>
 		<main>
+			<?php
+	if(isset($_POST['username'],$_POST['password'])){
+		
+	connexion($_POST['username'],$_POST['password']);
+	} 
+	?>
 		<br>
 		<div class="Inscri_Connex">
-		<form id="connex" method="post" ></form>
+		<form method="post" >
 			<div>
 				<label>IDENTIFICATION :</label>
 			</div>
@@ -31,15 +31,16 @@
 			<div>
 				<label>Entrez votre adresse email :</label>
 			</div>
-				<input  name="username" type="text" name="mail" id="connex"/>
+				<input  name="username" type="text" name="mail">
 			<div>
 				<label>Entrez votre mot de passe :</label>
 			</div>
-				<input name="password" type="password" name="mdp" id="connex"/>
+				<input name="password" type="password" name="mdp">
 			<div>
-				<input type="submit" value="Connexion" id="connex"/>
+				<input type="submit" value="Connexion">
 			</div>
 			<br>
+		</form>
 			<div>
 				<strong>Vous n'êtes pas encore clients?</strong>
 			</div>

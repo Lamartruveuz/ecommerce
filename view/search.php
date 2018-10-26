@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include("Enteteprojet.php"); ?>
-	<?php include 'database_projet.php' ?>
 	<title></title>
 </head>
 <body>
 <br><br>
 	<main>
 	<center>
-		<form action="results.php" method="GET">
+		<form action="index.php?page=results" method="GET">
 		<br>Research: <input type="text" name="search" />
 		<select name='category'>
 		<option disabled selected>Category</option>
