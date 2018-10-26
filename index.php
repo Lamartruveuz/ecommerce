@@ -1,13 +1,40 @@
-<!--TODO start session-->
+<!--start session-->
+<?php session_start();?>
 
 
 <!--include of database file-->
+<?php $database = new PDO('mysql:host=localhost;dbname=projetecommerce','root','')?>
 <?php include "database_projet.php"; ?>
-<?php $database = ?>
-<!--TODO assign database connexion into $database variable-->
 
-<!--include of chekuser file-->
-<?php include "connexion.php"; ?>
-<!--TODO assign database connexion into $database variable-->
+<!-- include of checkuser file-->
+<?php include "checkUser.php"; ?>
 
-<?php $page = $_POST['page']; ?>
+
+<?php $page= "news" ;?>
+<?php if (isset($_GET['page'])) {
+
+	$page = $_GET['page'];
+}
+
+if (file_exists('action/'.$page.'.php')===true){
+	include 'action/'.$page.'.php';
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<!--TODO using $page decide to include header.php-->
+</head>
+<body>
+	<?php 
+	if (file_exists('view/'.$page.'.php')===true){
+		include 'view/'.$page.'.php';
+		include "Enteteprojet.php";
+	}
+	else {
+		include 'view/main.php';
+	}
+	?>
+</body>
+</html>
