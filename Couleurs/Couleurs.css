@@ -112,7 +112,7 @@ text-overflow: ellipsis;
 /*réglages box*/
 width: 140px;
 height:110px;
-line-height: 50px;
+line-height: 30px;
 border-top-right-radius: 8px;
 border-bottom-right-radius: 8px;
 /*padding: var(--horizontal-margin);*/
@@ -249,6 +249,30 @@ margin-right: 15%;
 height: 110px;
 }
 
+/*RETIRE l'article de la liste du PANIER*/
+.boutonsuppressionpanier
+{
+	/*réglages texte*/
+	font-size: 15px;
+	color: white;
+	font-family: Impact,fantasy;
+	font-weight: normal;
+	/*réglages bouton*/
+	margin: auto;
+	display: block;
+	width: 30px;
+	height: 30px;
+	line-height:30px;
+	text-align: center;
+	border-radius: 15px;
+	background-image: linear-gradient(to top, rgba(140,0,0,1), rgba(240,70,70,1),rgba(140,0,0,1));
+}
+/*bouton survolé par la souris*/
+.boutonsuppressionpanier:hover
+{
+	background-image: linear-gradient(to top, rgba(140,50,50,1), rgba(240,120,120,1),rgba(140,50,50,1));
+}
+
 /*PRESENTATION du PRODUIT*/
 /*TITRE de PRESENTATION*/	
 .titre_court 
@@ -320,6 +344,7 @@ color: rgb(0,255,60);
 font-weight: normal;
 text-decoration: none;
 }
+
 
 input[type=number]
 {

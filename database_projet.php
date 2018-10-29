@@ -1,9 +1,5 @@
-
-
 <html>
-	<?php
-		$bdd = new PDO('mysql:host=localhost;dbname=projetecommerce','root','');
-	?>
+	
 	
 	
 <!--REQUETES COMMANDES DATABASE-->
@@ -24,7 +20,7 @@
 		$amount='0';
 		
 		//SQL requests for needed values through all the targetted tables 
-		$product_info=$bdd->query('SELECT op.quantity, op.unit_price, op.product_id, p.name, o.amount
+		$product_info=$bdd->query('SELECT op.quantity, op.unit_price, op.product_id, p.name_short,p.name_long, o.amount
 								FROM order_products op 
 								INNER JOIN orders o ON o.id=op.order_id
 								INNER JOIN products p ON p.id=op.product_id
@@ -33,24 +29,46 @@
 		//Curse of all lines that fit the conditions and display in form
 		foreach($product_info as $row) 
 		{
-						?>
-				<section class='sectioncart'>
-					<aside class='asideresults'>	
-						<div>
-							<br>Prix: <br> <?php echo $row["unit_price"]?>€
-						</div>
-					</aside>
-					<img id="productImageresult" src="images/<?php echo $row["id"]?>.jpg" border="1"/>
-					<div>	
-						<h1>
-							<span class="fn titre_court"><?php echo $row["name"]?></span>
-							<br/>
-							<p class="titrelong">
-								<span class="titre_long"><?php echo $row["name"]?></span>
-							</p>
-						</h1>
-					</div>
-				</section>
+			?>
+			<aside class='asideresults'>	
+				<div>
+					<br> <?php echo $row["unit_price"]?>€
+				</div>
+<!--/////////////////Nouvel ajout ici/////////////////////-->
+				<form method="post">
+					<input class="boutonsuppressionpanier" type="submit" value="X">	
+				</form>
+<!--/////////////////Fin de l'ajout ici///////////////////-->
+			</aside>
+			<section class='sectioncart'>
+				
+				<img id="productImageresult" src="images/<?php echo $row["product_id"]?>.jpg" border="1"/>
+				<div>	
+					<h1>
+						<span class="fn titre_court"><a href="product.php?id=<?php echo $row["product_id"]?>" style="text-decoration: none; color: #FFFFFF"><?php echo $row["name_short"]?> </a></span>
+						<br/>
+						<p class="titrelong">
+							<span class="titre_long"><?php echo $row["name_long"]?></span>
+						</p>
+					</h1>
+<!--///////////Petit ajout ici : ATTENTION////////////////-->
+					<p>
+						Quantity :
+						<select name="Quantité">
+							<option>
+								<?php echo $row["quantity"];?>
+								<?php echo "(quantité actuelle)"; ?>
+							</option>
+								<?php for($range=1; $range<100; $range++)
+									{?>
+										<option><?php echo $range;?>
+										</option><?php
+									}?>
+						</select>
+					</p>
+<!--/////////////////Fin de l'ajout ici///////////////////-->
+				</div>
+			</section>
 						
 			<?php 
 			//Take back amount value
@@ -58,7 +76,7 @@
 		}?>
 		<!--Display amount value-->
 		<aside class='asidecart'>
-			Montant total: <?php echo $amount?>€   <br><img id="OrderImage" src="commande.jpg" /><br><br>
+			Montant total: <?php echo $amount?>€   <br><img id="OrderImage" src="images/commande.jpg" /><br><br>
 		</aside>					
 		<?php	$product_info->closeCursor();
 	}
@@ -66,10 +84,10 @@
 
 
 
-</html>
+
 
   
-<?php
+
 
 function connexion($mail,$mdp){
 	if (empty($mail) | empty($mdp)) 
@@ -78,74 +96,88 @@ function connexion($mail,$mdp){
 	}
 	else {
 	        //connexion avec la base de données
-	    $pdo = new PDO("mysql:host=localhost;dbname=projet", "root", "");
-	    $connexion =  $pdo->prepare('SELECT COUNT(*) as nb FROM user WHERE mail = ? and password = ?');
-	    $connexion->execute(array($mail, $mdp));
-	    $row = $stmt -> fetch();
-
-	    if ($row['nb'] == 0) 
+	    $pdo = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
+	    $users=$pdo->query("SELECT * FROM users WHERE email='$mail' AND password='$mdp'");
+	    if (!$users) 
 	    {
-	    	echo 'erreur identifiant et ou mot de passe incorect';
+			echo "Identifiant ou mot de passe incorrect";
+			
 	    }
 	    else {
+			$user=$users->fetch();
+			$_SESSION["id"]=$user["id"];
+			$_SESSION["username"]=$user["username"];
+			header('Location: account.php');
 	    	//lance la fonction sseion qui permettra d'avoir un session utilisateur ouverte
+			
+			
 	    } 
 	}
 }
 
 function inscription($mail,$conf_mail,$mdp,$conf_mdp,$villeL,$paysL,$code_postalL,$adresseL,$adresseL_special,$villeF,$paysF,$code_postalF,$adresseF,$adresseF_special,$nom){
-	if (empty($mail) | empty($conf_mail) | empty($mdp) | empty($conf_mdp) | empty($paysF) | empty($paysL) | empty($code_postalF) | empty($code_postalL) | empty($villeF) | empty($villeL) | empty($adresseF) |empty($adresseL) | empty($nom) | empty($prenom)){
+	if (empty($mail) | empty($conf_mail) | empty($mdp) | empty($conf_mdp) | empty($paysF) | empty($paysL) | empty($code_postalF) | empty($code_postalL) | empty($villeF) | empty($villeL) | empty($adresseF) |empty($adresseL) | empty($nom)){
 	    echo 'mauvaise saisie de la connexion';
 	}
 	else{
-		$pdo = new PDO("mysql:host=localhost;dbname=projet", "root", "");
+		$pdo = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
 		//verif si adresse est bien un mail
 		if (filter_var($mail, FILTER_VALIDATE_EMAIL)){
+
 			//verif si les adresses mails sont bien les même
 			if ($mail === $conf_mail){
-				$verif =  $pdo->prepare('SELECT COUNT(*) as nb FROM user WHERE mail = ?');
-				$verif->execute(array($mail));
-				$row = $stmt -> fetch();
+				$verif =  $pdo->query("SELECT * FROM users WHERE email ='$mail'")->fetch();
 				//verif si l'adresse mail n'existe pas déja dans la base de donnée
-	    		if ($row['nb'] == 0){
+	    		if (!$verif){
 	    			//verif si le mot de passe est bien saisi 2 fois à l'identique
 	    			if ($mdp ===$conf_mdp){
 	    				//faire la requete sql qui remplie la base de donnée
+	    				$users1=$pdo->query("SELECT max(id) as max FROM users")->fetch();
 	    				enregistrement_order_adresse($villeL,$paysL,$code_postalL,$adresseL,$adresseL_special,$nom,$pdo);
 	    				enregistrement_user_adresse($villeF,$paysF,$code_postalF,$adresseF,$adresseF_special,$nom,$pdo);
 	    				enregistrment_user($nom,$mail,$mdp,$pdo);
+						$users2=$pdo->query("SELECT max(id) as max FROM users")->fetch();
+						if ($users2 > $users1)
+	    					echo "Vous êtes bien enregistré";
 	    			}
-	    			else
+	    			else{
 	    				echo "mot de passe différent";
+	    			}
 	    		}
-	    		else
+	    		else{
 	    			echo "utilisateur déjà existant";
+	    		}
 			}
-			else
+			else{
 				echo "adresse mail différent";
+			}
 		}
-		else
+		else{
 			echo "l'adresse mail n'est pas valide";
+		}
 	}
 }
 
 function enregistrement_order_adresse($ville,$pays,$code_postal,$adresse,$adresse_special,$nom,$pdo){
-	$pdo->exect("INSERT INTO order_addresses ('human_name','address_one','address_two','postal_code','city','country') VALUES (".$nom.",".$adresse.",".$adresse_special.",".$code_postal.",".$ville.",".$pays.")");
+	$enregistrement_order_adresse = $pdo->exec("INSERT INTO `order_addresses` (human_name,address_one,address_two,postal_code,city,country) VALUES ('$nom','$adresse','$adresse_special','$code_postal','$ville','$pays')");
 }
 
 function enregistrement_user_adresse($ville,$pays,$code_postal,$adresse,$adresse_special,$nom,$pdo){
-	$pdo->exect("INSERT INTO user_addresses ('human_name','address_one','address_two','postal_code','city','country') VALUES (".$nom.",".$adresse.",".$adresse_special.",".$code_postal.",".$ville.",".$pays.")");
+	$pdo->exec("INSERT INTO `user_addresses` (human_name,address_one,address_two,postal_code,city,country) VALUES ('$nom','$adresse','$adresse_special','$code_postal','$ville','$pays')");
 }
 
 function enregistrment_user($nom,$mail,$mdp,$pdo){
-	$id_order=$pdo->exect("SELECT max(id) FROM order_addresses");
-	$id_user=$pdo->exect("SELECT max(id) FROM user_addresses");
-	$pdo->exect("INSERT INTO user ('username','email','password','billing_adress_id','delivery_adresss_id') VALUES (".$nom.",".$mail.",".$mdp.",".$id_order.",".$id_user.")");
+	$id_order=$pdo->query("SELECT max(id) as max FROM order_addresses")->fetch();
+	$id_user=$pdo->query("SELECT max(id) as max FROM user_addresses")->fetch();
+	$id_user_adress=$id_user["max"];
+	$id_order_adress=$id_order["max"];
+
+	$pdo->exec("INSERT INTO `users` (username,email,password,billing_adress_id,delivery_adress_id) VALUES ('$nom','$mail','$mdp','$id_order_adress','$id_user_adress')");
 }
 
 	
 	$bdd = new
-	PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+	PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 	$product_id=1;
 	$quantity=2; 
 	$user_id=1; //Known variables when user click "add to cart"
@@ -178,7 +210,7 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 	*/	
 	function research($search,$range) {
 		$bdd = new
-			PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 		if($range!=null) {
 			$research =$bdd->query("select * from products where name_short like '%".$search."%' AND range_id=".$range);
 		}
@@ -188,21 +220,21 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 	
 	function product_from_id($id) {
 		$bdd = new
-			PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 		$product =$bdd->query('select * from products where id='.$id)->fetch();
 		return $product;
 	}
 	
 	function all_ranges() {
 		$bdd = new
-			PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 		$product =$bdd->query('select id, name from ranges');
 		return $product;
 	}
 		
 	function add_to_cart($product_id,$quantity,$user_id) {		
 		$bdd = new
-			PDO('mysql:host=localhost;dbname=projet', 'root', '') ;
+			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
 		$get_price=$bdd->query('select unit_price from products where id='.$product_id)->fetch(); //get price of the product
 		$price=$get_price["unit_price"];
 		
@@ -249,3 +281,4 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 	
 ?>
 
+</html>
