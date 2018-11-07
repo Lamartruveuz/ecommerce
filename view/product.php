@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="Couleurs/Couleurs.css" />
 
 </head>
-
-<body>
-	<?php
+<?php 
 	$product_id= $_GET['id'];
 	if(isset($_POST['quantity'])){
 		if(empty($_POST['quantity'])) {
@@ -20,10 +18,28 @@
 	}	
 	$product = product_from_id($product_id);
 	
-	?>
+?>
+<?php
+
+		if(isset($page)) { //set cookie to count number of product view
+
+			if($page=="product") {
+				if(!isset($_COOKIE["count_pages"])) {
+					setcookie("count_pages",1);
+				}
+				else {
+					setcookie("count_pages",++$_COOKIE["count_pages"]);
+				}
+				
+			}
+
+		}
+?>
+
+<body>
+	
 	<br/>
 	<main>
-		
 		<?php if(isset($_SESSION["id"])) 
 		{?>
 			<section class="asideproduct">

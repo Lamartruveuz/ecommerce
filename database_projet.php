@@ -130,8 +130,8 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 	function research($search,$range) {
 		$bdd = ConnectionDataBase();
 		if($range!=null) {
-			$research =$bdd->query("select * from products where name_short like '%".$search."%' 
-				AND range_id=".$range." OR parent_id=".$range);
+			$research =$bdd->query("select p.*,r.parent_id from products p inner join ranges r on p.range_id=r.id 
+			where p.name_short like '%".$search."%' AND p.range_id=".$range." OR r.parent_id=".$range);
 		}
 		else {$research =$bdd->query("select * from products where name_short like '%".$search."%'");}
 		return $research;

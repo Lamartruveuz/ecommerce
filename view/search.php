@@ -7,7 +7,7 @@
 <br><br>
 	<main>
 	<center>
-		<form action="index.php?page=results" method="GET">
+		<form action="index.php?page=results" method="POST">
 		<br>Research: <input type="text" name="search" />
 		<select name='category'>
 		<option disabled selected>Category</option>

@@ -10,10 +10,10 @@
 
 <body>
 <?php
-	if(!isset($_GET['category'])) {
-		$_GET['category']=null;
+	if(!isset($_POST['category'])) {
+		$_POST['category']=null;
 	}
-	$research=research($_GET['search'],$_GET['category']);
+	$research=research($_POST['search'],$_POST['category']);
  ?>
 	<br>
 	<main> <?php
