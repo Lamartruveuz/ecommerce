@@ -50,16 +50,18 @@ function connexion($mail,$mdp){
 	else {
 	        //connexion avec la base de données
 	    $pdo = ConnectionDataBase();
-	    $users=$pdo->query("SELECT * FROM users WHERE email='$mail' AND password='$mdp'");
+	    $users=$pdo->query("SELECT * FROM users WHERE email='$mail' AND password='$mdp'")->fetch();
 	    if (!$users) 
 	    {
 			echo "Identifiant ou mot de passe incorrect";
 			
 	    }
 	    else {
-			$user=$users->fetch();
+			$user=$users;
 			$_SESSION["id"]=$user["id"];
 			$_SESSION["username"]=$user["username"];
+			setcookie('mail', $mail, time()+24*3600, null, null, false, true);
+			setcookie('password', $mdp, time()+24*3600, null, null, false, true);
 			header('Location: index.php?page=account');
 	    	//lance la fonction sseion qui permettra d'avoir un session utilisateur ouverte
 			
@@ -193,7 +195,57 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 		$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$order_id);	//	Update total amount of order
 	}
 	
-	
+//Supprimer une commande du panier
+function Suppr_Cart($user_id,$id_product)
+{
+	$bdd=ConnectionDataBase();
+
+	$user_cart_ID=$bdd->query("SELECT o.user_id, op.order_id,count(*) as count_cart from order_products op
+		INNER JOIN orders o ON o.id = op.order_id
+		WHERE o.user_id =".$user_id." AND o.type='CART'")->fetch();
+
+
+	$suppression=$bdd->query("DELETE op FROM order_products op
+		INNER JOIN orders o on o.id=op.order_id
+		WHERE op.product_id=".$id_product." AND op.order_id=".$user_cart_ID['order_id']);
+
+
+//ATTENTION REFLEXION
+	$suppressOrder=$bdd->query("SELECT o.id FROM orders o INNER JOIN order_products op ON op.order_id=o.id
+		WHERE o.user_id=".$user_cart_ID['user_id']." AND o.type='CART'")->fetch();
+
+	$supressCart=$bdd->query("DELETE o FROM orders o WHERE NOT o.id=".$suppressOrder["id"]." and o.user_id=".$user_cart_ID['user_id']);
+	$get_amount=$bdd->query("SELECT sum(unit_price*quantity) AS amount FROM order_products WHERE order_id=".$user_cart_ID['order_id'])->fetch();
+	 //Get total amount of cart
+
+	$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$user_cart_ID['order_id']);
+//////////////////////ERREUR : LA REDIRECTION NE FONCTIONNE PAS
+	header('Location: index.php?page=cart');
+
+}
+
+//Modificaton de la fonction à faire ici ici/////////////////
+//Modifier la quantité de produit depuis le panier
+function Modify_cart_Quantity($user_id,$id_product,$quantity)
+{
+	$bdd=ConnectionDataBase();
+
+	$user_cart_ID=$bdd->query("SELECT op.order_id,count(*) as count_cart from order_products op
+		INNER JOIN orders o ON o.id = op.order_id
+		WHERE o.user_id =".$user_id." AND o.type='CART'")->fetch();
+
+	$modif=$bdd->query("UPDATE order_products op SET quantity=".$quantity." 
+		WHERE op.product_id=".$id_product." AND op.order_id=".$user_cart_ID['order_id']);
+
+	$get_amount=$bdd->query("SELECT sum(unit_price*quantity) AS amount FROM order_products WHERE order_id=".$user_cart_ID['order_id'])->fetch();
+	 //Get total amount of cart
+
+	$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$user_cart_ID['order_id']);
+	//	Update total amount of order
+
+	header('Location: index.php?page=cart');
+
+}
 ?>
 
 </html>

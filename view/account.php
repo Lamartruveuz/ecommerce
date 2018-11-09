@@ -50,7 +50,8 @@
 			else{
 					echo "Adresse mail invalide<br><br>";
 			}
-			refresh_adresses(); //Ne fonctionne pas, pas de refresh quand on submit
+			refresh_adresses();
+			header("Location: index.php?page=account"); //Ne fonctionne pas, pas de refresh quand on submit
 			
 		}
 	}
@@ -69,7 +70,7 @@
 		refresh_adresses();
 	}
 	else{
-		header("Location: connexion.php");
+		header("Location: index.php?page=connexion");
 	}	
 		?>
 
@@ -125,12 +126,10 @@
 					</div>
 					<br>
 				</form>
-				<a href='action/disconnect.php'>Déconnexion</a>
+				<a href='index.php?page=disconnect'>Déconnexion</a>
 			</center>
 
 		</main>
 	</body>
-		
-	<?php include 'footer.php' ?>
 </html>
 

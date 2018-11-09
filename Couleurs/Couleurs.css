@@ -243,11 +243,106 @@ margin:30px var(--horizontal-margin);
 border-radius: 10px;
 background-image: linear-gradient(to top, rgba(150,18,18,1), rgba(218,99,99,1), rgba(150,18,18,1));
 margin-top: 30px;
-margin-bottom: 30px;
 margin-left: 15%;
 margin-right: 15%;
-height: 110px;
+height: 120px;
 }
+
+/*AFFICHAGE du PRIX du PRODUIT dans le PANIER*/
+.asidecart 
+{
+/*réglages texte*/
+color: white;
+font-family: Impact,fantasy;
+font-size: 24px;
+font-weight: bold;
+text-overflow: ellipsis;
+/*réglages box*/
+width: 140px;
+height:120px;
+line-height: 30px;
+border-top-right-radius: 8px;
+border-bottom-right-radius: 8px;
+/*padding: var(--horizontal-margin);*/
+/*box-sizing:border-box;*/
+background-image: linear-gradient(to top, rgba(31,31,31,1), rgba(93,93,93,1), rgba(31,31,31,1));
+text-align: center;
+/*réglages position*/
+margin-top: 30px;
+margin-right: 15%;
+float: right;
+clear: right; /*Combiné au float left, clear permet d'aligner les box de prix à droite en vertical*/
+/*ATTENTION : ne rajoutez pas de "margin-bottom" au risque de tout décaler*/
+}
+
+/*RETIRE l'article de la liste du PANIER*/
+.boutonsuppressionpanier
+{
+	/*réglages texte*/
+	font-size: 15px;
+	color: white;
+	font-family: Impact,fantasy;
+	font-weight: normal;
+	/*réglages bouton*/
+	margin: auto;
+	display: block;
+	width: 30px;
+	height: 30px;
+	line-height:30px;
+	text-align: center;
+	border-radius: 15px;
+	background-image: linear-gradient(to top, rgba(140,0,0,1), rgba(240,70,70,1),rgba(140,0,0,1));
+}
+/*bouton survolé par la souris*/
+.boutonsuppressionpanier:hover
+{
+	background-image: linear-gradient(to top, rgba(140,50,50,1), rgba(240,120,120,1),rgba(140,50,50,1));
+}
+
+/*Validation de la Commande du panier*/
+.boutonValiderCommande
+{
+	/*réglages texte*/
+	font-size: 32px;
+	color: black;
+	font-family: Impact,fantasy;
+	font-weight: normal;
+	/*réglages bouton*/
+	margin: auto;
+	display: block;
+	width: 300px;
+	height: 100px;
+	line-height:30px;
+	text-align: center;
+	border-radius: 25px;
+	background-image: linear-gradient(to top, rgba(230,200,0,1), rgba(230,215,80,1),rgba(230,200,0,1));
+}
+
+.boutonValiderCommande:hover
+{
+	background-image: linear-gradient(to top, rgba(255,255,100,1), rgba(255,255,100,1),rgba(255,255,100,1));
+}
+
+
+/*AFFICHAGE du MONTANT TOTAL du PANIER*/
+.montantTotalFinal
+{
+	font-size: 32px;
+	color: white;
+	font-family: Impact,fantasy;
+	font-weight: normal;
+	/*réglages bouton*/
+	margin: auto;
+	display: block;
+	width: 700px;
+	height: 70px;
+	line-height:70px;
+	text-align: center;
+	border-radius: 15px;
+	background-image: linear-gradient(to top, rgba(130,40,40,1), rgba(150,120,120,1),rgba(130,40,40,1));
+
+}
+
 
 /*PRESENTATION du PRODUIT*/
 /*TITRE de PRESENTATION*/	
@@ -319,6 +414,13 @@ font-family: Impact,fantasy;
 color: rgb(0,255,60);
 font-weight: normal;
 text-decoration: none;
+}
+
+/*Bouton caché validation quantité*/
+.boutonCache
+{
+	position: absolute;
+	visibility: hidden;
 }
 
 input[type=number]

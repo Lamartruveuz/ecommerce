@@ -3,7 +3,6 @@
 
 
 <!--include of database file-->
-<?php $database = new PDO('mysql:host=localhost;dbname=projetecommerce','root','')?>
 <?php include "database_projet.php"; ?>
 
 <!-- include of checkuser file-->
@@ -28,14 +27,14 @@ if (file_exists('action/'.$page.'.php')===true){
 </head>
 <body>
 	<?php 
+	include "view/Enteteprojet.php";
 	if (file_exists('view/'.$page.'.php')===true){		
-		include "view/Enteteprojet.php";
 		include 'view/'.$page.'.php';
 	}
 	else {
-		include "view/Enteteprojet.php";
 		include 'view/news.php';
 	}
 	?>
 </body>
+<?php include 'view/footer.php'; ?>
 </html>

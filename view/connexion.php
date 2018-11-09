@@ -16,8 +16,7 @@
 		<main>
 			<?php
 	if(isset($_POST['username'],$_POST['password'])){
-		
-	connexion($_POST['username'],$_POST['password']);
+		connexion($_POST['username'],$_POST['password']);
 	} 
 	?>
 		<br>
@@ -31,11 +30,11 @@
 			<div>
 				<label>Entrez votre adresse email :</label>
 			</div>
-				<input  name="username" type="text" name="mail">
+				<input  name="username" type="text" name="mail" value=<?php if(isset($_COOKIE['mail'])){echo $_COOKIE['mail'];}?> >
 			<div>
 				<label>Entrez votre mot de passe :</label>
 			</div>
-				<input name="password" type="password" name="mdp">
+				<input name="password" type="password" name="mdp" value=<?php if(isset($_COOKIE['password'])){echo $_COOKIE['password'];}?> >
 			<div>
 				<input type="submit" value="Connexion">
 			</div>
@@ -45,7 +44,7 @@
 				<strong>Vous n'êtes pas encore clients?</strong>
 			</div>
 			<div>
-				<form action='inscription.php'>
+				<form action='index.php?page=inscription'>
 					<input value="Inscription" type="submit">
 				</form>
 			</div>
@@ -53,5 +52,4 @@
 		</div>
 	</main>
 	</body>
-	<?php include 'footer.php'?>
 </html>
