@@ -50,7 +50,8 @@
 			else{
 					echo "Adresse mail invalide<br><br>";
 			}
-			refresh_adresses(); //Ne fonctionne pas, pas de refresh quand on submit
+			refresh_adresses();
+			header("Location: index.php?page=account"); //Ne fonctionne pas, pas de refresh quand on submit
 			
 		}
 	}
@@ -130,7 +131,5 @@
 
 		</main>
 	</body>
-		
-	<?php include 'footer.php' ?>
 </html>
 

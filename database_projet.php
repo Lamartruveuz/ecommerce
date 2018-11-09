@@ -209,11 +209,16 @@ function Suppr_Cart($user_id,$id_product)
 		INNER JOIN orders o on o.id=op.order_id
 		WHERE op.product_id=".$id_product." AND op.order_id=".$user_cart_ID['order_id']);
 
+
 //ATTENTION REFLEXION
 	$suppressOrder=$bdd->query("SELECT o.id FROM orders o INNER JOIN order_products op ON op.order_id=o.id
 		WHERE o.user_id=".$user_cart_ID['user_id']." AND o.type='CART'")->fetch();
 
 	$supressCart=$bdd->query("DELETE o FROM orders o WHERE NOT o.id=".$suppressOrder["id"]." and o.user_id=".$user_cart_ID['user_id']);
+	$get_amount=$bdd->query("SELECT sum(unit_price*quantity) AS amount FROM order_products WHERE order_id=".$user_cart_ID['order_id'])->fetch();
+	 //Get total amount of cart
+
+	$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$user_cart_ID['order_id']);
 //////////////////////ERREUR : LA REDIRECTION NE FONCTIONNE PAS
 	header('Location: index.php?page=cart');
 
