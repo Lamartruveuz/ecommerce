@@ -4,9 +4,8 @@
 <head>
     <title>ecommerce</title>
 
-    <link rel="stylesheet" href="../Couleurs/Couleurs.css" />
-	<?php include 'database_projet.php' ?>
-	<?php include 'Enteteprojet.php' ?>
+    <link rel="stylesheet" href="Couleurs/Couleurs.css" />
+
 </head>
 
 <body>
@@ -31,9 +30,9 @@
     		Prix: <br> <?php echo $row["unit_price"]?>€
 		</section>
 		<section class='sectionresults'>
-			<img id="productImageresult" src="../images/<?php echo $row["id"]?>.jpg"/>
+			<img id="productImageresult" src="images/<?php echo $row["id"]?>.jpg"/>
 			<div>			
-				<a href="product.php?id=<?php echo $row["id"]?>" class="titre_court"><?php echo $row["name_short"]?> 
+				<a href="index.php?page=product&id=<?php echo $row["id"]?>" class="titre_court"><?php echo $row["name_short"]?> 
 				</a>			
 				<p class="titre_long">
 					<?php echo $row["name_long"]?>

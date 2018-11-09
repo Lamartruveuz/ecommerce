@@ -1,20 +1,28 @@
 <!DOCTYPE html>
+
 <html>
 	<head>
 		<title>
 			Connexion
 		</title>
-		<link rel="stylesheet"  href="css/main.css">
 	</head>
 	
-	<?php include 'Enteteprojet.php'?>
 	<body>
+	
+	
 		<br>
 		<br>
 		<br>
 		<main>
+			<?php
+	if(isset($_POST['username'],$_POST['password'])){
+		
+	connexion($_POST['username'],$_POST['password']);
+	} 
+	?>
 		<br>
 		<div class="Inscri_Connex">
+		<form method="post" >
 			<div>
 				<label>IDENTIFICATION :</label>
 			</div>
@@ -23,20 +31,23 @@
 			<div>
 				<label>Entrez votre adresse email :</label>
 			</div>
-				<input  type="text" placeholder="jean.dupond@gmail"/>
+				<input  name="username" type="text" name="mail">
 			<div>
 				<label>Entrez votre mot de passe :</label>
 			</div>
-				<input type="password" placeholder="mot de passe"/>
+				<input name="password" type="password" name="mdp">
 			<div>
-				<input type="button" value="Connexion"/>
+				<input type="submit" value="Connexion">
 			</div>
 			<br>
+		</form>
 			<div>
 				<strong>Vous n'êtes pas encore clients?</strong>
 			</div>
 			<div>
-				<input type="button" value="Inscription">
+				<form action='inscription.php'>
+					<input value="Inscription" type="submit">
+				</form>
 			</div>
 			<br>
 		</div>

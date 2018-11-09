@@ -9,85 +9,38 @@
 <?php
 	
 	
+	function ConnectionDataBase()
+	{
+		$bdd = new PDO('mysql:host=localhost;dbname=projetecommerce','root','');
+		return $bdd;
+	}
+
+	function SearchIdUser($id){
+		$bdd = ConnectionDataBase();
+		$user = $bdd->query("SELECT * FROM users WHERE users.id=".$id)->fetch();
+		return $user;
+	}
 	/*This function take in parameter the user id  and display the contain of the cart*/
 	
 	function display_cart($id_user_acount)
 	{		
 		//Import BDD
-		$bdd = new PDO('mysql:host=localhost;dbname=projetecommerce','root','');
+		$bdd = ConnectionDataBase();
 		
 		//Initialisation of variables
-		$amount='0';
-		
+		global $amount;
+		global $product_info;
+		$amount=0;
 		//SQL requests for needed values through all the targetted tables 
-		$product_info=$bdd->query('SELECT op.quantity, op.unit_price, op.product_id, p.name_short,p.name_long, o.amount
+		$product_info=$bdd->query("SELECT op.quantity, op.unit_price, op.product_id, p.name_short,p.name_long, o.amount
 								FROM order_products op 
 								INNER JOIN orders o ON o.id=op.order_id
 								INNER JOIN products p ON p.id=op.product_id
-								WHERE o.user_id='.$id_user_acount.' AND o.type="CART"');
-		
-		//Curse of all lines that fit the conditions and display in form
-		foreach($product_info as $row) 
-		{
-			?>
-			<aside class='asideresults'>	
-				<div>
-					<br> <?php echo $row["unit_price"]?>€
-				</div>
-<!--/////////////////Nouvel ajout ici/////////////////////-->
-				<form method="post">
-					<input class="boutonsuppressionpanier" type="submit" value="X">	
-				</form>
-<!--/////////////////Fin de l'ajout ici///////////////////-->
-			</aside>
-			<section class='sectioncart'>
-				
-				<img id="productImageresult" src="images/<?php echo $row["product_id"]?>.jpg" border="1"/>
-				<div>	
-					<h1>
-						<span class="fn titre_court"><a href="product.php?id=<?php echo $row["product_id"]?>" style="text-decoration: none; color: #FFFFFF"><?php echo $row["name_short"]?> </a></span>
-						<br/>
-						<p class="titrelong">
-							<span class="titre_long"><?php echo $row["name_long"]?></span>
-						</p>
-					</h1>
-<!--///////////Petit ajout ici : ATTENTION////////////////-->
-					<p>
-						Quantity :
-						<select name="Quantité">
-							<option>
-								<?php echo $row["quantity"];?>
-								<?php echo "(quantité actuelle)"; ?>
-							</option>
-								<?php for($range=1; $range<100; $range++)
-									{?>
-										<option><?php echo $range;?>
-										</option><?php
-									}?>
-						</select>
-					</p>
-<!--/////////////////Fin de l'ajout ici///////////////////-->
-				</div>
-			</section>
-						
-			<?php 
-			//Take back amount value
-			$amount=$row["amount"]; 
-		}?>
-		<!--Display amount value-->
-		<aside class='asidecart'>
-			Montant total: <?php echo $amount?>€   <br><img id="OrderImage" src="images/commande.jpg" /><br><br>
-		</aside>					
-		<?php	$product_info->closeCursor();
+								WHERE o.user_id=".$id_user_acount." AND o.type='CART'");
+		?>				
+		<?php	
 	}
 	
-
-
-
-
-
-  
-
 
 function connexion($mail,$mdp){
 	if (empty($mail) | empty($mdp)) 
@@ -96,7 +49,7 @@ function connexion($mail,$mdp){
 	}
 	else {
 	        //connexion avec la base de données
-	    $pdo = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
+	    $pdo = ConnectionDataBase();
 	    $users=$pdo->query("SELECT * FROM users WHERE email='$mail' AND password='$mdp'");
 	    if (!$users) 
 	    {
@@ -107,7 +60,7 @@ function connexion($mail,$mdp){
 			$user=$users->fetch();
 			$_SESSION["id"]=$user["id"];
 			$_SESSION["username"]=$user["username"];
-			header('Location: account.php');
+			header('Location: index.php?page=account');
 	    	//lance la fonction sseion qui permettra d'avoir un session utilisateur ouverte
 			
 			
@@ -120,7 +73,7 @@ function inscription($mail,$conf_mail,$mdp,$conf_mdp,$villeL,$paysL,$code_postal
 	    echo 'mauvaise saisie de la connexion';
 	}
 	else{
-		$pdo = new PDO("mysql:host=localhost;dbname=projetecommerce", "root", "");
+		$pdo = ConnectionDataBase();
 		//verif si adresse est bien un mail
 		if (filter_var($mail, FILTER_VALIDATE_EMAIL)){
 
@@ -171,81 +124,44 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 	$id_user=$pdo->query("SELECT max(id) as max FROM user_addresses")->fetch();
 	$id_user_adress=$id_user["max"];
 	$id_order_adress=$id_order["max"];
-
 	$pdo->exec("INSERT INTO `users` (username,email,password,billing_adress_id,delivery_adress_id) VALUES ('$nom','$mail','$mdp','$id_order_adress','$id_user_adress')");
 }
-
 	
-	$bdd = new
-	PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
-	$product_id=1;
-	$quantity=2; 
-	$user_id=1; //Known variables when user click "add to cart"
-	$price_product=$bdd->query("select unit_price from products where id=".$product_id);
-
-	foreach($price_product as $row) {
-		$price=$row["unit_price"];
-	}
-	/*$user_cart_id=$bdd->query("select op.order_id,count(*) as count_cart from order_products 
-		INNER JOIN orders o ON o.id = op.order_id
-		WHERE o.user_id = :userID AND o.type='CART'"); //return id order of a specific user's cart if exists
-	
-	$product_in_cart=$bdd->query("select op.quantity, op.order_id, count(*) as count_product from order_products 
-		INNER JOIN orders o ON o.id = op.order_id
-		WHERE o.user_id = :userID AND o.type='CART' AND op.product_id= :productID"); //return quantity of a specific product in cart of user and its order id
-		
-	foreach($product_in_cart as $row) {
-		$quantity_cart=$row["quantity"];
-		$order_id=$row["order_id"];
-	}
-	$new_quantity=$quantity_cart+$quantity;
-	$increment_quantity=$bdd->query('UPDATE order_products
-		SET quantity='.$new_quantity.' WHERE order_id='.$order_id); //Increment quantity of the product in cart
-	
-
-	
-	$add_product_to_cart== $bdd->exec('INSERT INTO `order_products` (order_id, product_id, quantity, unit_price) 
-		VALUES ('.$order_id.','.$product_id.','.$quantity.','.$price); //Add a new product to cart
-		
-	*/	
 	function research($search,$range) {
-		$bdd = new
-			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
+		$bdd = ConnectionDataBase();
 		if($range!=null) {
-			$research =$bdd->query("select * from products where name_short like '%".$search."%' AND range_id=".$range);
+			$research =$bdd->query("select p.*,r.parent_id from products p inner join ranges r on p.range_id=r.id 
+			where p.name_short like '%".$search."%' AND p.range_id=".$range." OR r.parent_id=".$range);
 		}
 		else {$research =$bdd->query("select * from products where name_short like '%".$search."%'");}
 		return $research;
 	}
 	
 	function product_from_id($id) {
-		$bdd = new
-			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
+		$bdd = ConnectionDataBase();
 		$product =$bdd->query('select * from products where id='.$id)->fetch();
 		return $product;
 	}
 	
 	function all_ranges() {
-		$bdd = new
-			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
+		$bdd = ConnectionDataBase();
 		$product =$bdd->query('select id, name from ranges');
 		return $product;
 	}
 		
 	function add_to_cart($product_id,$quantity,$user_id) {		
-		$bdd = new
-			PDO('mysql:host=localhost;dbname=projetecommerce', 'root', '') ;
-		$get_price=$bdd->query('select unit_price from products where id='.$product_id)->fetch(); //get price of the product
+		$bdd = ConnectionDataBase();
+		$get_price=$bdd->query('SELECT unit_price from products where id='.$product_id)->fetch(); //get price of the product
 		$price=$get_price["unit_price"];
 		
-		$user_cart_id=$bdd->query("select op.order_id,count(*) as count_cart from order_products op
+		$user_cart_id=$bdd->query("SELECT op.order_id,count(*) as count_cart from order_products op
 		INNER JOIN orders o ON o.id = op.order_id
 		WHERE o.user_id =".$user_id." AND o.type='CART'")->fetch();
 		
 		if($user_cart_id["count_cart"]!=0) { //if user have a cart
 		
 			$order_id=$user_cart_id["order_id"];
-			$product_in_cart=$bdd->query("select op.quantity, op.order_id, count(*) as count_product from order_products op
+			$product_in_cart=$bdd->query("SELECT op.quantity, op.order_id, count(*) as count_product from order_products op
 				INNER JOIN orders o ON o.id = op.order_id
 				WHERE o.user_id =".$user_id." AND o.type='CART' AND op.product_id=".$product_id)->fetch();
 
@@ -266,8 +182,7 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 		
 		$add_order=$bdd->exec("INSERT INTO `orders` (`user_id`, `type`, `status`, `amount`, `billing_adress_id`, `delivery_adress_id`)
 				VALUES (".$user_id.",'CART','CART',0, 1, 2)");
-		$get_order_id=$bdd->query("select id from orders 
-				WHERE user_id =".$user_id." AND type='CART'")->fetch(); // get the order id of user's cart
+		$get_order_id=$bdd->query("SELECT id from orders WHERE user_id =".$user_id." AND type='CART'")->fetch(); // get the order id of user's cart
 		$order_id=$get_order_id["id"];
 		$add_product=$bdd->exec('INSERT INTO `order_products` (order_id, product_id, quantity, unit_price)
 				VALUES ('.$order_id.','.$product_id.','.$quantity.','.$price.')');
@@ -278,7 +193,52 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 		$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$order_id);	//	Update total amount of order
 	}
 	
-	
+//Supprimer une commande du panier
+function Suppr_Cart($user_id,$id_product)
+{
+	$bdd=ConnectionDataBase();
+
+	$user_cart_ID=$bdd->query("SELECT o.user_id, op.order_id,count(*) as count_cart from order_products op
+		INNER JOIN orders o ON o.id = op.order_id
+		WHERE o.user_id =".$user_id." AND o.type='CART'")->fetch();
+
+
+	$suppression=$bdd->query("DELETE op FROM order_products op
+		INNER JOIN orders o on o.id=op.order_id
+		WHERE op.product_id=".$id_product." AND op.order_id=".$user_cart_ID['order_id']);
+
+//ATTENTION REFLEXION
+	$suppressOrder=$bdd->query("SELECT o.id FROM orders o INNER JOIN order_products op ON op.order_id=o.id
+		WHERE o.user_id=".$user_cart_ID['user_id']." AND o.type='CART'")->fetch();
+
+	$supressCart=$bdd->query("DELETE o FROM orders o WHERE NOT o.id=".$suppressOrder["id"]." and o.user_id=".$user_cart_ID['user_id']);
+//////////////////////ERREUR : LA REDIRECTION NE FONCTIONNE PAS
+	header('Location: index.php?page=cart');
+
+}
+
+//Modificaton de la fonction à faire ici ici/////////////////
+//Modifier la quantité de produit depuis le panier
+function Modify_cart_Quantity($user_id,$id_product,$quantity)
+{
+	$bdd=ConnectionDataBase();
+
+	$user_cart_ID=$bdd->query("SELECT op.order_id,count(*) as count_cart from order_products op
+		INNER JOIN orders o ON o.id = op.order_id
+		WHERE o.user_id =".$user_id." AND o.type='CART'")->fetch();
+
+	$modif=$bdd->query("UPDATE order_products op SET quantity=".$quantity." 
+		WHERE op.product_id=".$id_product." AND op.order_id=".$user_cart_ID['order_id']);
+
+	$get_amount=$bdd->query("SELECT sum(unit_price*quantity) AS amount FROM order_products WHERE order_id=".$user_cart_ID['order_id'])->fetch();
+	 //Get total amount of cart
+
+	$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$user_cart_ID['order_id']);
+	//	Update total amount of order
+
+	header('Location: index.php?page=cart');
+
+}
 ?>
 
 </html>
