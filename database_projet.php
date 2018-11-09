@@ -50,16 +50,18 @@ function connexion($mail,$mdp){
 	else {
 	        //connexion avec la base de données
 	    $pdo = ConnectionDataBase();
-	    $users=$pdo->query("SELECT * FROM users WHERE email='$mail' AND password='$mdp'");
+	    $users=$pdo->query("SELECT * FROM users WHERE email='$mail' AND password='$mdp'")->fetch();
 	    if (!$users) 
 	    {
 			echo "Identifiant ou mot de passe incorrect";
 			
 	    }
 	    else {
-			$user=$users->fetch();
+			$user=$users;
 			$_SESSION["id"]=$user["id"];
 			$_SESSION["username"]=$user["username"];
+			setcookie('mail', $mail, time()+24*3600, null, null, false, true);
+			setcookie('password', $mdp, time()+24*3600, null, null, false, true);
 			header('Location: index.php?page=account');
 	    	//lance la fonction sseion qui permettra d'avoir un session utilisateur ouverte
 			
