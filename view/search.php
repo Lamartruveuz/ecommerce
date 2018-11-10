@@ -4,7 +4,6 @@
 	<title></title>
 </head>
 <body>
-<br><br>
 	<main>
 	<center>
 		<form action="index.php" method="GET">

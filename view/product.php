@@ -7,64 +7,29 @@
     <link rel="stylesheet" href="Couleurs/Couleurs.css" />
 
 </head>
-<?php 
-	$product_id= $_GET['id'];
-	if(isset($_POST['quantity'])){
-		if(empty($_POST['quantity'])) {
-			$_POST['quantity']=1;
-		}
-	add_to_cart($product_id,$_POST['quantity'],$_SESSION["id"]); 
-	unset($_POST['quantity']);
-	}	
-	$product = product_from_id($product_id);
-	
-?>
-<?php
-
-		if(isset($page)) { //set cookie to count number of product view
-
-			if($page=="product") {
-				if(!isset($_COOKIE["count_pages"])) {
-					setcookie("count_pages",1);
-				}
-				else {
-					setcookie("count_pages",++$_COOKIE["count_pages"]);
-				}
-				
-			}
-
-		}
-?>
 
 <body>
 	
 	<br/>
 	<main>
-		<?php if(isset($_SESSION["id"])) 
-		{?>
+		
 			<section class="asideproduct">
-				<?php echo $product["unit_price"]?>€
-
-				<form method='post' id='order'>
-					Quantité:
-					<input value="1" type="number" form="order" min="1" max="100" name="quantity" form='order'>	
-					<input class="boutonpanierproduit" type='submit' value='Add to cart' />
-				</form>
-			
-			</section>
-		<?php }
-		else {?>
-			<section class="asideproduct">
-				<?php echo $product["unit_price"]?>€
-				
-				Quantité:<br><input value="1" type="number" min="1" max="100">	
-				<a class="boutonpanierproduit" href="index.php?page=connexion">
-				Add to cart
-				</a>
-				
-			
-			</section>
-		<?php } ?>
+				<?php echo $product["unit_price"]."€";
+				if(isset($_SESSION["id"])) 
+					{?>
+					<form method='post' id='order'>
+						Quantité:
+						<input value="1" type="number" form="order" min="1" max="100" name="quantity" form='order'>	
+						<input class="boutonpanierproduit" type='submit' value='Add to cart' />
+					</form>
+				<?php }
+				else {?>
+					Quantité:<br><input value="1" type="number" min="1" max="100">	
+					<a class="boutonpanierproduit" href="index.php?page=connexion">
+					Add to cart
+					</a>
+				<?php }?>
+		</section>		
 		<section class="sectionproduct">
 			<img src="images/<?php echo $product["id"]?>.jpg" id="productImage"/>
 			<p class="titre_court"><?php echo $product["name_short"] ?></p>

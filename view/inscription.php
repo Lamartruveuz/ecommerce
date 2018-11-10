@@ -5,16 +5,8 @@
 </head>
 
 <body>
-	
-	<br>
-	<br>
-	<br>
-	<main>
-		<?php
-	if(isset($_POST['mail'],$_POST['conf_mail'],$_POST['mdp'],$_POST['conf_mdp'],$_POST['paysL'],$_POST['villeL'],$_POST['code_postalL'],$_POST['adresseL'],$_POST['adresseL_special'],$_POST['paysF'],$_POST['villeF'],$_POST['code_postalF'],$_POST['adresseF'],$_POST['adresseF_special'],$_POST['nom'])){
-		
-	inscription($_POST['mail'],$_POST['conf_mail'],$_POST['mdp'],$_POST['conf_mdp'],$_POST['paysL'],$_POST['villeL'],$_POST['code_postalL'],$_POST['adresseL'],$_POST['adresseL_special'],$_POST['paysF'],$_POST['villeF'],$_POST['code_postalF'],$_POST['adresseF'],$_POST['adresseF_special'],$_POST['nom']);} 
-	?>
+
+	<main>		
 	<br>
 	<div class="Inscri_Connex">
 		<p>
@@ -70,6 +62,11 @@
 				<input type="submit" value="Inscription">
 		</div>
 		</form>
+		<?php
+		if(isset($_POST['mail'],$_POST['conf_mail'],$_POST['mdp'],$_POST['conf_mdp'],$_POST['paysL'],$_POST['villeL'],$_POST['code_postalL'],$_POST['adresseL'],$_POST['adresseL_special'],$_POST['paysF'],$_POST['villeF'],$_POST['code_postalF'],$_POST['adresseF'],$_POST['adresseF_special'],$_POST['nom'])){
+			
+			inscription($_POST['mail'],$_POST['conf_mail'],$_POST['mdp'],$_POST['conf_mdp'],$_POST['paysL'],$_POST['villeL'],$_POST['code_postalL'],$_POST['adresseL'],$_POST['adresseL_special'],$_POST['paysF'],$_POST['villeF'],$_POST['code_postalF'],$_POST['adresseF'],$_POST['adresseF_special'],$_POST['nom']);} 
+		?>
 		<br>
 	</div>
 </main>

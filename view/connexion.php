@@ -8,11 +8,7 @@
 	</head>
 	
 	<body>
-	
-	
-		<br>
-		<br>
-		<br>
+
 		<main>
 			<?php
 	if(isset($_POST['username'],$_POST['password'])){
@@ -36,6 +32,9 @@
 			</div>
 				<input name="password" type="password" name="mdp" value=<?php if(isset($_COOKIE['password'])){echo $_COOKIE['password'];}?> >
 			<div>
+				<input type="checkbox" id="remember" name="remember" value="yes" checked> 
+				<label for="remember">Se souvenir de moi</label>
+				<br><br>
 				<input type="submit" value="Connexion">
 			</div>
 			<br>
@@ -44,7 +43,8 @@
 				<strong>Vous n'êtes pas encore clients?</strong>
 			</div>
 			<div>
-				<form action='index.php?page=inscription'>
+				<form action="./index.php" method="get">
+					<input type="hidden" name="page" value="inscription">
 					<input value="Inscription" type="submit">
 				</form>
 			</div>

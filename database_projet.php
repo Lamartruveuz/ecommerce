@@ -37,8 +37,6 @@
 								INNER JOIN orders o ON o.id=op.order_id
 								INNER JOIN products p ON p.id=op.product_id
 								WHERE o.user_id=".$id_user_acount." AND o.type='CART'");
-		?>				
-		<?php	
 	}
 	
 
@@ -60,8 +58,15 @@ function connexion($mail,$mdp){
 			$user=$users;
 			$_SESSION["id"]=$user["id"];
 			$_SESSION["username"]=$user["username"];
-			setcookie('mail', $mail, time()+24*3600, null, null, false, true);
-			setcookie('password', $mdp, time()+24*3600, null, null, false, true);
+			if(isset($_POST["remember"])) {
+				setcookie('mail', $mail, time()+24*3600, null, null, false, true);
+				setcookie('password', $mdp, time()+24*3600, null, null, false, true);
+			}
+			else {
+
+				setcookie('mail', '', time()+24*3600, null, null, false, true);
+				setcookie('password', '', time()+24*3600, null, null, false, true);
+			}
 			header('Location: index.php?page=account');
 	    	//lance la fonction sseion qui permettra d'avoir un session utilisateur ouverte
 			
@@ -153,25 +158,26 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 		
 	function add_to_cart($product_id,$quantity,$user_id) {		
 		$bdd = ConnectionDataBase();
-		$get_price=$bdd->query('SELECT unit_price from products where id='.$product_id)->fetch(); //get price of the product
+		$get_price=$bdd->query('SELECT unit_price from products where id='.$product_id)->fetch(); //get price of the product with ID
 		$price=$get_price["unit_price"];
 		
 		$user_cart_id=$bdd->query("SELECT op.order_id,count(*) as count_cart from order_products op
 		INNER JOIN orders o ON o.id = op.order_id
-		WHERE o.user_id =".$user_id." AND o.type='CART'")->fetch();
+		WHERE o.user_id =".$user_id." AND o.type='CART'")->fetch(); //Get cart ID of th user
 		
 		if($user_cart_id["count_cart"]!=0) { //if user have a cart
 		
 			$order_id=$user_cart_id["order_id"];
 			$product_in_cart=$bdd->query("SELECT op.quantity, op.order_id, count(*) as count_product from order_products op
 				INNER JOIN orders o ON o.id = op.order_id
-				WHERE o.user_id =".$user_id." AND o.type='CART' AND op.product_id=".$product_id)->fetch();
+				WHERE o.user_id =".$user_id." AND o.type='CART' AND op.product_id=".$product_id)->fetch(); 
+				//Check if product already in cart
 
 			if($product_in_cart["count_product"]!=0) { //if product is already in cart
 			
-				$new_quantity=$product_in_cart["quantity"]+$quantity;
+				$new_quantity=$product_in_cart["quantity"]+$quantity; //set new quantity of product
 				$increment_quantity=$bdd->query('UPDATE order_products
-					SET quantity='.$new_quantity.' WHERE order_id='.$order_id.' and product_id='.$product_id); //increment quantity of the product
+					SET quantity='.$new_quantity.' WHERE order_id='.$order_id.' and product_id='.$product_id); //increment quantity of the product in database
 			}
 			else {
 				$add_product_to_cart= $bdd->exec('INSERT INTO order_products (order_id, product_id, quantity, unit_price) 
@@ -183,7 +189,7 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 		else {
 		
 		$add_order=$bdd->exec("INSERT INTO `orders` (`user_id`, `type`, `status`, `amount`, `billing_adress_id`, `delivery_adress_id`)
-				VALUES (".$user_id.",'CART','CART',0, 1, 2)");
+				VALUES (".$user_id.",'CART','CART',0, 1, 2)"); //create new cart for user
 		$get_order_id=$bdd->query("SELECT id from orders WHERE user_id =".$user_id." AND type='CART'")->fetch(); // get the order id of user's cart
 		$order_id=$get_order_id["id"];
 		$add_product=$bdd->exec('INSERT INTO `order_products` (order_id, product_id, quantity, unit_price)
@@ -191,8 +197,10 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 		
 		
 		}
-		$get_amount=$bdd->query("select sum(unit_price*quantity) as amount from order_products where order_id=".$order_id)->fetch(); //Get total amount of cart
-		$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$order_id);	//	Update total amount of order
+		$get_amount=$bdd->query("select sum(unit_price*quantity) as amount from order_products where order_id=".$order_id)->fetch(); 
+		//Get total amount of cart
+		$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$order_id);	
+		//	Update total amount of order
 	}
 	
 //Supprimer une commande du panier
@@ -211,16 +219,21 @@ function Suppr_Cart($user_id,$id_product)
 
 
 //ATTENTION REFLEXION
+	//delete cart if have no product in it
 	$suppressOrder=$bdd->query("SELECT o.id FROM orders o INNER JOIN order_products op ON op.order_id=o.id
 		WHERE o.user_id=".$user_cart_ID['user_id']." AND o.type='CART'")->fetch();
-
+	if($suppressOrder["id"]!="") {
 	$supressCart=$bdd->query("DELETE o FROM orders o WHERE NOT o.id=".$suppressOrder["id"]." and o.user_id=".$user_cart_ID['user_id']);
+	}
+	else {
+	$supressCart=$bdd->query("DELETE o FROM orders o where o.user_id=".$user_cart_ID['user_id']);
+	}
 	$get_amount=$bdd->query("SELECT sum(unit_price*quantity) AS amount FROM order_products WHERE order_id=".$user_cart_ID['order_id'])->fetch();
 	 //Get total amount of cart
 
 	$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$user_cart_ID['order_id']);
 //////////////////////ERREUR : LA REDIRECTION NE FONCTIONNE PAS
-	header('Location: index.php?page=cart');
+	
 
 }
 
@@ -242,9 +255,18 @@ function Modify_cart_Quantity($user_id,$id_product,$quantity)
 
 	$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$user_cart_ID['order_id']);
 	//	Update total amount of order
+	
+	
 
-	header('Location: index.php?page=cart');
+}
 
+function CartToOrder($user_id) {
+	$bdd=ConnectionDataBase();
+	$user_cart_ID=$bdd->query("SELECT op.order_id,count(*) as count_cart from order_products op
+		INNER JOIN orders o ON o.id = op.order_id
+		WHERE o.user_id =".$user_id." AND o.type='CART'")->fetch();
+	$update_type=$bdd->exec("UPDATE orders SET type='ORDER', status='BILLED' where id=".$user_cart_ID['order_id']);
+	header("Location: index.php?page=orders");
 }
 ?>
 

@@ -28,6 +28,7 @@ if (file_exists('action/'.$page.'.php')===true){
 <body>
 	<?php 
 	include "view/Enteteprojet.php";
+	echo "<br><br>";
 	if (file_exists('view/'.$page.'.php')===true){		
 		include 'view/'.$page.'.php';
 	}

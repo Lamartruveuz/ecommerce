@@ -50,6 +50,7 @@
 						else {
 							?>
 							<li><a href="index.php?page=account">Mon Compte</a></li>
+							<li><a href="index.php?page=disconnect">Déconnexion</a></li>
 						<?php
 						}	
 						?>
@@ -63,7 +64,7 @@
 						{
 						?>
 						<li><a href="index.php?page=cart">Panier</a></li>
-						<li><a href="">Favoris</a></li>
+						<li><a href="index.php?page=orders">Mes commandes</a></li>
 						<?php 
 						} 
 						?>

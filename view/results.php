@@ -9,20 +9,11 @@
 </head>
 
 <body>
-<?php
-	if(!isset($_GET['category'])) {
-		$_GET['category']=null;
-	}
-	$research=research($_GET['search'],$_GET['category']);
- ?>
-	<br>
 	<main> <?php
 	if ($research->rowCount() === 0) { 
     
-	echo "No result found." ?>
-	
-<?php
-} 	
+	echo "<center><br>Aucun article de correspond à votre recherche.</center>"; 
+	} 	
 	foreach($research as $row)
 	{
 		?>

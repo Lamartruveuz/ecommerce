@@ -17,7 +17,7 @@
 			<aside class='asidecart'>	
 				<div>
 					<br> <?php echo $row["unit_price"]?>€
-				<form method="post">
+				<form method="post" action="./index.php?page=cart">
 					<input class="boutonsuppressionpanier" type="submit" value="X"/>
 					<input type="hidden" value=<?php echo $row["product_id"];?> name="suppr"/>	
 				</form>
@@ -35,7 +35,7 @@
 						</p>
 					</h1>
 					<p>
-						<form method="post">
+						<form method="post" action="./index.php?page=cart">
 							Quantity :
 							<input type="number" min="1" max="100"value="<?php echo $row["quantity"];?>" name="quantityModif"/>
 							<input type="submit"/>
@@ -66,9 +66,13 @@
 		</aside>
 		<br/>
 		<br/>
-		<form method="post">
-			<input class="boutonValiderCommande" type="submit" value="Passer Commande"/>
+		<form method="post" >
+			<input class="boutonValiderCommande" name="valider" type="submit" value="Passer Commande"/>
 		</form>
+		<?php if(isset($_POST["valider"])) {
+			CartToOrder($_SESSION["id"]);
+		}
+		?>
 	</main>
 	</body>
 </html>
