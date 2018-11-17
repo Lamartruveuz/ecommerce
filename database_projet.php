@@ -38,6 +38,23 @@
 								INNER JOIN products p ON p.id=op.product_id
 								WHERE o.user_id=".$id_user_acount." AND o.type='CART'");
 	}
+
+	function display_order($id_user_acount,$order_id)
+	{		
+		//Import BDD
+		$bdd = ConnectionDataBase();
+		
+		//Initialisation of variables
+		global $amount;
+		global $product_info;
+		$amount=0;
+		//SQL requests for needed values through all the targetted tables 
+		$product_info=$bdd->query("SELECT op.quantity, op.unit_price, op.product_id, p.name_short,p.name_long, o.amount
+								FROM order_products op 
+								INNER JOIN orders o ON o.id=op.order_id
+								INNER JOIN products p ON p.id=op.product_id
+								WHERE o.user_id=".$id_user_acount." AND o.id=".$order_id);
+	}
 	
 
 function connexion($mail,$mdp){

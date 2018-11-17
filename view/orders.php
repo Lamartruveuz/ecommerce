@@ -19,11 +19,12 @@ if($count>0) {
 
 		<tr>
 		    <td><?php echo $row["created_at"];?></td>
-		    <td><?php echo $row["amount"];?></td> 
+		    <td><?php echo round($row["amount"],2)."€";?></td> 
 		    <td>
-		    	<form method="post" action="index.php?page=order">
-		    		<input type="hidden"  name="order_id" value=<?php echo $row["id"]; ?>>
-		    		<input type="submit" value="Details">
+		    	<form method="get" action="index.php?page=order">
+		    		<input type="hidden" value="order" name="page">
+		    		<input type="hidden"  name="order" value=<?php echo $row["id"]; ?>>
+		    		<input type="submit" value="Details">    		
 		    	</form>
 
 		    </td>
