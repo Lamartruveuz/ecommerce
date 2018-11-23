@@ -26,12 +26,12 @@
 		<br/>
 		<div>
 			<marquee class="bandef" direction ="left">
-				#Nightmare
-				<img class="imagebandef" src="images/Freddy.jpg"/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Mask
-				<img class="imagebandef" src="images/mask.jpg"/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#DF6
-				<img class="imagebandef" src="images/Destination final 6.jpg"/>
+				#UpdatedSmartphone
+				<img class="imagebandef" src="images/SmartphoneFamily1.jpg"/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#TimeStyle
+				<img class="imagebandef" src="images/BlackWatch1.jpg"/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#PerformingLaptop
+				<img class="imagebandef" src="images/Laptop1.jpg"/>
 			</marquee>
 		</div>
 		<br/>
@@ -50,6 +50,7 @@
 						else {
 							?>
 							<li><a href="index.php?page=account">Mon Compte</a></li>
+							<li><a href="index.php?page=disconnect">Déconnexion</a></li>
 						<?php
 						}	
 						?>
@@ -63,7 +64,7 @@
 						{
 						?>
 						<li><a href="index.php?page=cart">Panier</a></li>
-						<li><a href="">Favoris</a></li>
+						<li><a href="index.php?page=orders">Mes commandes</a></li>
 						<?php 
 						} 
 						?>
