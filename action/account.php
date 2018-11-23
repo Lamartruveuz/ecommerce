@@ -1,4 +1,13 @@
 <?php 
+	
+	if(isset($_SESSION["id"])) 
+	{
+		refresh_adresses();
+	}
+	else{
+		header("Location: index.php?page=connexion");
+	}	
+	
 	function refresh_adresses() {
 		$bdd=ConnectionDataBase();
 		global $details;

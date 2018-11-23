@@ -26,12 +26,12 @@
 		<br/>
 		<div>
 			<marquee class="bandef" direction ="left">
-				#Nightmare
-				<img class="imagebandef" src="images/Freddy.jpg"/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Mask
-				<img class="imagebandef" src="images/mask.jpg"/>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#DF6
-				<img class="imagebandef" src="images/Destination final 6.jpg"/>
+				#UpdatedSmartphone
+				<img class="imagebandef" src="images/SmartphoneFamily1.jpg"/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#TimeStyle
+				<img class="imagebandef" src="images/BlackWatch1.jpg"/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#PerformingLaptop
+				<img class="imagebandef" src="images/Laptop1.jpg"/>
 			</marquee>
 		</div>
 		<br/>

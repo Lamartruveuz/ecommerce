@@ -12,7 +12,6 @@
 	
 	<br/>
 	<main>
-		
 			<section class="asideproduct">
 				<?php echo $product["unit_price"]."€";
 				if(isset($_SESSION["id"])) 
@@ -37,7 +36,6 @@
 			<p class="description"><?php echo $product["description"];?></p>
 			
 		</section>
-		
 		
 	</main>
     

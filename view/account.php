@@ -2,16 +2,6 @@
 	<head>
 		<link rel="stylesheet" href="Couleurs/Couleurs.css" />
 	</head>
-	
-	<?php
-	if(isset($_SESSION["id"])) 
-	{
-		refresh_adresses();
-	}
-	else{
-		header("Location: index.php?page=connexion");
-	}	
-		?>
 
 	<body>
 		

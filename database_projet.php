@@ -218,6 +218,7 @@ function enregistrment_user($nom,$mail,$mdp,$pdo){
 		//Get total amount of cart
 		$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$order_id);	
 		//	Update total amount of order
+		header("Location: index.php?page=cart");
 	}
 	
 //Supprimer une commande du panier
@@ -240,15 +241,17 @@ function Suppr_Cart($user_id,$id_product)
 	$suppressOrder=$bdd->query("SELECT o.id FROM orders o INNER JOIN order_products op ON op.order_id=o.id
 		WHERE o.user_id=".$user_cart_ID['user_id']." AND o.type='CART'")->fetch();
 	if($suppressOrder["id"]!="") {
-	$supressCart=$bdd->query("DELETE o FROM orders o WHERE NOT o.id=".$suppressOrder["id"]." and o.user_id=".$user_cart_ID['user_id']);
+	$supressCart=$bdd->query("DELETE o FROM orders o WHERE o.type='CART' AND NOT o.id=".$suppressOrder["id"]." and o.user_id=".$user_cart_ID['user_id']);
 	}
 	else {
-	$supressCart=$bdd->query("DELETE o FROM orders o where o.user_id=".$user_cart_ID['user_id']);
+	$supressCart=$bdd->query("DELETE o FROM orders o where o.user_id=".$user_cart_ID['user_id']." AND o.type='CART'");
 	}
 	$get_amount=$bdd->query("SELECT sum(unit_price*quantity) AS amount FROM order_products WHERE order_id=".$user_cart_ID['order_id'])->fetch();
 	 //Get total amount of cart
 
 	$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$user_cart_ID['order_id']);
+	header("Location: index.php?page=cart");
+
 //////////////////////ERREUR : LA REDIRECTION NE FONCTIONNE PAS
 	
 
@@ -272,6 +275,7 @@ function Modify_cart_Quantity($user_id,$id_product,$quantity)
 
 	$update_amount=$bdd->exec('UPDATE orders SET amount='.$get_amount["amount"]." where id=".$user_cart_ID['order_id']);
 	//	Update total amount of order
+	header("Location: index.php?page=cart");
 	
 	
 
